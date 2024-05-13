@@ -1,9 +1,10 @@
 package projects.gsc.accountservice.model;
 
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Embedded;
+import lombok.Builder;
 
 @Embeddable
+@Builder
 public class Movement {
     private MovementType type;
     private double amount;
