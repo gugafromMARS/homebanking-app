@@ -1,8 +1,10 @@
 package projects.gsc.accountservice.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import projects.gsc.accountservice.dto.AccountCreateDto;
 import projects.gsc.accountservice.service.AccountService;
 
 @RestController
@@ -13,6 +15,16 @@ public class AccountController {
 
     public AccountController(AccountService accountService) {
         this.accountService = accountService;
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAccount (@RequestParam Long id){
+        return ResponseEntity.ok(accountService.getAccountById(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<?> createAccount(@RequestBody AccountCreateDto accountCreateDto){
+        return new ResponseEntity<>(accountService.create(accountCreateDto), HttpStatus.CREATED);
     }
 
 

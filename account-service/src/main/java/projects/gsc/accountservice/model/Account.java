@@ -19,13 +19,16 @@ public class Account {
     @Column(name = "id", nullable = false)
     private Long id;
     private String ownerName;
+    private int age;
+    private String address;
     private String ownerEmail;
+    private AccountType accountType;
     private double balance;
 
     @ElementCollection
     private Map<Date, Movement> movementsList;
 
-    public static AccountBuilder builder (){
+    public AccountBuilder builder (){
         return new AccountBuilder();
     }
 
@@ -53,6 +56,29 @@ public class Account {
         public AccountBuilder withMovements(){
             account.setMovementsList(new HashMap<>());
             return this;
+        }
+
+        public AccountBuilder withAge(int age){
+            account.setAge(age);
+            return this;
+        }
+
+        public AccountBuilder withAddress(String address){
+            account.setAddress(address);
+            return this;
+        }
+
+        public AccountBuilder withAccType(String type){
+            if(type.toUpperCase().equals(AccountType.SAVINGS.getType())){
+                account.setAccountType(AccountType.SAVINGS);
+                return this;
+            }
+            account.setAccountType(AccountType.CURRENT);
+            return this;
+        }
+
+        public Account build(){
+            return account;
         }
 
 
