@@ -35,7 +35,7 @@ public class BankMovements {
         throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, "Don't have enough funds");
     }
 
-    public PaymentDto payment(Account account, Long accountPaymentNumber, MovementCreateDto movementCreateDto){
+    public PaymentDto payment(Account account, MovementCreateDto movementCreateDto){
 
         if(haveMoney(account, movementCreateDto)){
             account.setBalance(account.getBalance() - movementCreateDto.getAmount());

@@ -17,13 +17,25 @@ public class MovementsController {
         this.accountService = accountService;
     }
 
-    @PostMapping
+    @PostMapping("/withdraw")
     public ResponseEntity<?> withdraw(@RequestBody MovementCreateDto movementCreateDto){
         return new ResponseEntity<>(accountService.withdrawById(movementCreateDto), HttpStatus.CREATED);
     }
 
-    @PostMapping
+    @PostMapping("/payment")
     public ResponseEntity<?> payment(@RequestBody MovementCreateDto movementCreateDto){
-
+        return new ResponseEntity<>(accountService.paymentForRefAndEntity(movementCreateDto), HttpStatus.CREATED);
     }
+
+    @PostMapping("/transfer")
+    public ResponseEntity<?> transfer(@RequestBody MovementCreateDto movementCreateDto){
+        return new ResponseEntity<>(accountService.transferForOtherAcc(movementCreateDto), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/deposit")
+    public ResponseEntity<?> deposit(@RequestBody MovementCreateDto movementCreateDto){
+        return new ResponseEntity<>(accountService.depositInAcc(movementCreateDto), HttpStatus.CREATED);
+    }
+
+
 }

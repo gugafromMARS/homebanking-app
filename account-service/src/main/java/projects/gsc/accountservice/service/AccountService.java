@@ -8,10 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 import projects.gsc.accountservice.calculator.BankMovements;
 import projects.gsc.accountservice.converter.AccountConverter;
 import projects.gsc.accountservice.converter.MovementConverter;
-import projects.gsc.accountservice.dto.AccountCreateDto;
-import projects.gsc.accountservice.dto.AccountDto;
-import projects.gsc.accountservice.dto.MovementCreateDto;
-import projects.gsc.accountservice.dto.WithdrawOrDepositDto;
+import projects.gsc.accountservice.dto.*;
 import projects.gsc.accountservice.model.Account;
 import projects.gsc.accountservice.repository.AccountRepository;
 
@@ -43,26 +40,48 @@ public class AccountService {
                 }
             }
         }
-        Account account = persistNewAccount(accountCreateDto);
+        Account account = accountRepository.save(converter.fromCreateDto(accountCreateDto));
         return converter.toDto(account);
     }
 
-    private Account persistNewAccount (AccountCreateDto accountCreateDto){
-        return accountRepository.save(converter.fromCreateDto(accountCreateDto));
-    }
 
     public Double getBalanceById(Long id) {
-        Account existingAcc = accountRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found"));
+        Account existingAcc = thisAccExists(id);
         return existingAcc.getBalance();
     }
 
 
     public WithdrawOrDepositDto withdrawById(MovementCreateDto movementCreateDto) {
-            Account existingAcc = accountRepository.findById(movementCreateDto.getAccountNumber())
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found"));
+            Account existingAcc = thisAccExists(movementCreateDto);
             return bankMovements.withdraw(existingAcc, movementCreateDto);
-
     }
+
+
+    public PaymentDto paymentForRefAndEntity(MovementCreateDto movementCreateDto) {
+        Account existingAcc = thisAccExists(movementCreateDto);
+        return bankMovements.payment(existingAcc, movementCreateDto);
+    }
+
+    public TransferDto transferForOtherAcc(MovementCreateDto movementCreateDto) {
+        Account existingAcc = thisAccExists(movementCreateDto);
+        return bankMovements.transfer(existingAcc, movementCreateDto);
+    }
+
+    public WithdrawOrDepositDto depositInAcc(MovementCreateDto movementCreateDto) {
+        Account existingAcc = thisAccExists(movementCreateDto);
+        return bankMovements.withdraw(existingAcc, movementCreateDto);
+    }
+
+
+    private Account thisAccExists(MovementCreateDto movementCreateDto){
+        return accountRepository.findById(movementCreateDto.getAccNumber())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found"));
+    }
+    private Account thisAccExists(Long id){
+        return accountRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found"));
+    }
+
+
 
 }
