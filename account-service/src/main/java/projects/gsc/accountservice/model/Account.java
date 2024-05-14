@@ -26,7 +26,7 @@ public class Account {
     private double balance;
 
     @ElementCollection
-    private Map<Date, Movement> movementsList;
+    private Map<String, Movement> movementsList;
 
     public AccountBuilder builder (){
         return new AccountBuilder();
