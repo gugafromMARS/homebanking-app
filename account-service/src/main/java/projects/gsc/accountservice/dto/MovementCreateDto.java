@@ -7,7 +7,9 @@ import lombok.Setter;
 @Setter
 public class MovementCreateDto {
 
-    private Long accountNumber;
     private String type;
     private double amount;
+    private Long receiptAccNumber;
+    private int ref;
+    private Long entity;
 }

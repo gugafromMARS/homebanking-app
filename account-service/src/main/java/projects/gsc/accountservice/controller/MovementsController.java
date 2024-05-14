@@ -21,4 +21,9 @@ public class MovementsController {
     public ResponseEntity<?> withdraw(@RequestBody MovementCreateDto movementCreateDto){
         return new ResponseEntity<>(accountService.withdrawById(movementCreateDto), HttpStatus.CREATED);
     }
+
+    @PostMapping
+    public ResponseEntity<?> payment(@RequestBody MovementCreateDto movementCreateDto){
+
+    }
 }

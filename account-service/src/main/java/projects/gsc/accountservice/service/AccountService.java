@@ -11,11 +11,10 @@ import projects.gsc.accountservice.converter.MovementConverter;
 import projects.gsc.accountservice.dto.AccountCreateDto;
 import projects.gsc.accountservice.dto.AccountDto;
 import projects.gsc.accountservice.dto.MovementCreateDto;
-import projects.gsc.accountservice.dto.MovementDto;
+import projects.gsc.accountservice.dto.WithdrawOrDepositDto;
 import projects.gsc.accountservice.model.Account;
 import projects.gsc.accountservice.repository.AccountRepository;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -59,10 +58,11 @@ public class AccountService {
     }
 
 
-    public MovementDto withdrawById(MovementCreateDto movementCreateDto) {
+    public WithdrawOrDepositDto withdrawById(MovementCreateDto movementCreateDto) {
             Account existingAcc = accountRepository.findById(movementCreateDto.getAccountNumber())
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found"));
             return bankMovements.withdraw(existingAcc, movementCreateDto);
 
     }
+
 }

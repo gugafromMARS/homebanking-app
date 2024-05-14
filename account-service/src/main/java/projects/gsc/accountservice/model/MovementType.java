@@ -5,6 +5,7 @@ public enum MovementType {
     DEPOSIT("DEPOSIT"),
     WITHDRAW("WITHDRAW"),
     RECEIPT("RECEIPT"),
+    TRANSFER("TRANSFER"),
     PAYMENT("PAYMENT");
 
     private final String type;
