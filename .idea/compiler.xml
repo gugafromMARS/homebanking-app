@@ -12,8 +12,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="cards-service" target="17" />
-      <module name="loans-service" target="17" />
       <module name="users-service (1)" target="17" />
       <module name="users-service (2)" target="17" />
     </bytecodeTargetLevel>
@@ -21,8 +19,8 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="account-service" options="-parameters" />
-      <module name="cards-service" options="-parameters" />
-      <module name="loans-service" options="-parameters" />
+      <module name="cards-service" options="" />
+      <module name="loans-service" options="" />
       <module name="users-service" options="-parameters" />
       <module name="users-service (1)" options="-parameters" />
       <module name="users-service (2)" options="-parameters" />
