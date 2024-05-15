@@ -12,5 +12,5 @@ public class MovementCreateDto {
     private double amount;
     private Long receiptAccNumber;
     private int ref;
-    private Long entity;
+    private int entity;
 }

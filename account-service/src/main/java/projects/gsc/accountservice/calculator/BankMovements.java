@@ -40,6 +40,7 @@ public class BankMovements {
         if(haveMoney(account, movementCreateDto)){
             account.setBalance(account.getBalance() - movementCreateDto.getAmount());
             Movement movement = updateMovementsInAcc(account, movementCreateDto);
+            account.getBalance();
             return movementConverter.toPaymentDto(account, movement);
         }
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Don't have enough funds");

@@ -1,10 +1,13 @@
 package projects.gsc.accountservice.model;
 
 import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 @Embeddable
 @Builder
+@AllArgsConstructor
 public class Movement {
 
     private MovementType type;
@@ -14,7 +17,7 @@ public class Movement {
     private Long receiptAccNumber;
     //for payment
     private int ref;
-    private Long entity;
+    private int entity;
 
 
     public Movement(MovementType type, double amount) {
@@ -58,11 +61,11 @@ public class Movement {
         this.ref = ref;
     }
 
-    public Long getEntity() {
+    public int getEntity() {
         return entity;
     }
 
-    public void setEntity(Long entity) {
+    public void setEntity(int entity) {
         this.entity = entity;
     }
 

@@ -10,9 +10,11 @@ import projects.gsc.accountservice.converter.AccountConverter;
 import projects.gsc.accountservice.converter.MovementConverter;
 import projects.gsc.accountservice.dto.*;
 import projects.gsc.accountservice.model.Account;
+import projects.gsc.accountservice.model.Movement;
 import projects.gsc.accountservice.repository.AccountRepository;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -32,6 +34,9 @@ public class AccountService {
 
 
     public AccountDto create(AccountCreateDto accountCreateDto) {
+        if(accountCreateDto.getAge() < 18){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Need to be older than 17");
+        }
         List<Account> existingAccounts = accountRepository.findByOwnerEmail(accountCreateDto.getOwnerEmail());
         if(existingAccounts.size() > 0){
             for(Account account : existingAccounts){
@@ -69,7 +74,7 @@ public class AccountService {
 
     public WithdrawOrDepositDto depositInAcc(MovementCreateDto movementCreateDto) {
         Account existingAcc = thisAccExists(movementCreateDto);
-        return bankMovements.withdraw(existingAcc, movementCreateDto);
+        return bankMovements.deposit(existingAcc, movementCreateDto);
     }
 
 
@@ -83,5 +88,9 @@ public class AccountService {
     }
 
 
-
+    public Map<String, Movement> getMovementsById(Long id) {
+        Account existingAcc = accountRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found"));
+        return existingAcc.getMovementsList();
+    }
 }

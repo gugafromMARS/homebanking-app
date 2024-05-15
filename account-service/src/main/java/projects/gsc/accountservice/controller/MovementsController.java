@@ -17,6 +17,12 @@ public class MovementsController {
         this.accountService = accountService;
     }
 
+    @GetMapping
+    public ResponseEntity<?> get(@RequestParam Long id){
+        return new ResponseEntity<>(accountService.getMovementsById(id), HttpStatus.CREATED);
+    }
+
+
     @PostMapping("/withdraw")
     public ResponseEntity<?> withdraw(@RequestBody MovementCreateDto movementCreateDto){
         return new ResponseEntity<>(accountService.withdrawById(movementCreateDto), HttpStatus.CREATED);

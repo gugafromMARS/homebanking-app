@@ -15,5 +15,5 @@ public class PaymentDto {
     private MovementType type;
     private double amount;
     private int ref;
-    private Long entity;
+    private int entity;
 }
