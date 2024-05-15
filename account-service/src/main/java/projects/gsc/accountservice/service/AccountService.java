@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import projects.gsc.accountservice.calculator.BankMovements;
 import projects.gsc.accountservice.converter.AccountConverter;
-import projects.gsc.accountservice.converter.MovementConverter;
 import projects.gsc.accountservice.dto.*;
 import projects.gsc.accountservice.model.Account;
 import projects.gsc.accountservice.model.Movement;
@@ -23,7 +22,7 @@ public class AccountService {
     private final AccountRepository accountRepository;
     private final AccountConverter converter;
     private final BankMovements bankMovements;
-    private final MovementConverter movementConverter;
+
 
 
 
@@ -56,15 +55,9 @@ public class AccountService {
     }
 
 
-    public WithdrawOrDepositDto withdrawById(MovementCreateDto movementCreateDto) {
-            Account existingAcc = thisAccExists(movementCreateDto);
-            return bankMovements.withdraw(existingAcc, movementCreateDto);
-    }
-
-
     public PaymentDto paymentForRefAndEntity(MovementCreateDto movementCreateDto) {
         Account existingAcc = thisAccExists(movementCreateDto);
-        return bankMovements.payment(existingAcc, movementCreateDto);
+            return bankMovements.payment(existingAcc, movementCreateDto);
     }
 
     public TransferDto transferForOtherAcc(MovementCreateDto movementCreateDto) {
@@ -72,7 +65,7 @@ public class AccountService {
         return bankMovements.transfer(existingAcc, movementCreateDto);
     }
 
-    public WithdrawOrDepositDto depositInAcc(MovementCreateDto movementCreateDto) {
+    public DepositDto depositInAcc(MovementCreateDto movementCreateDto) {
         Account existingAcc = thisAccExists(movementCreateDto);
         return bankMovements.deposit(existingAcc, movementCreateDto);
     }
@@ -93,4 +86,6 @@ public class AccountService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found"));
         return existingAcc.getMovementsList();
     }
+
+
 }

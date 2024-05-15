@@ -24,6 +24,7 @@ public class Account {
     private String ownerEmail;
     private AccountType accountType;
     private double balance;
+    private int pin;
 
     @ElementCollection
     private Map<String, Movement> movementsList;
@@ -74,6 +75,11 @@ public class Account {
                 return this;
             }
             account.setAccountType(AccountType.CURRENT);
+            return this;
+        }
+
+        public AccountBuilder withPin(int pin){
+            account.setPin(pin);
             return this;
         }
 

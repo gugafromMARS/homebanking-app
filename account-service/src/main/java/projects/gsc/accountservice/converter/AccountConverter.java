@@ -17,7 +17,8 @@ public class AccountConverter {
                 .withEmail(accountCreateDto.getOwnerEmail())
                 .withBalance()
                 .withAccType(accountCreateDto.getAccType())
-                .withMovements().build();
+                .withMovements()
+                .build();
     }
 
   public AccountDto toDto(Account account){

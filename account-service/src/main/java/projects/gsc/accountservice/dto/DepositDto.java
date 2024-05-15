@@ -10,7 +10,7 @@ import projects.gsc.accountservice.model.MovementType;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class WithdrawOrDepositDto {
+public class DepositDto {
 
     private String date;
     private MovementType type;

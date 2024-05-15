@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import projects.gsc.accountservice.dto.MovementCreateDto;
 import projects.gsc.accountservice.dto.PaymentDto;
 import projects.gsc.accountservice.dto.TransferDto;
-import projects.gsc.accountservice.dto.WithdrawOrDepositDto;
+import projects.gsc.accountservice.dto.DepositDto;
 import projects.gsc.accountservice.model.Account;
 import projects.gsc.accountservice.model.Movement;
 import projects.gsc.accountservice.model.MovementType;
@@ -17,10 +17,10 @@ import java.util.List;
 public class MovementConverter {
 
 
-    public WithdrawOrDepositDto toWithDrawOrDepositDto(Account account, Movement movement){
+    public DepositDto depositDto(Account account, Movement movement){
         List<String> dates = account.getMovementsList().keySet().stream().toList();
 
-        return WithdrawOrDepositDto.builder()
+        return DepositDto.builder()
                 .date(dates.get(dates.size() - 1))
                 .type(movement.getType())
                 .amount(movement.getAmount())
