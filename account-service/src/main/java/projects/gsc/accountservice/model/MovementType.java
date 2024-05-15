@@ -3,7 +3,6 @@ package projects.gsc.accountservice.model;
 public enum MovementType {
 
     DEPOSIT("DEPOSIT"),
-    WITHDRAW("WITHDRAW"),
     RECEIPT("RECEIPT"),
     TRANSFER("TRANSFER"),
     PAYMENT("PAYMENT");
