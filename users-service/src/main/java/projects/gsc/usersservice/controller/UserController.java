@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import projects.gsc.usersservice.dto.UserCreateDto;
+import projects.gsc.usersservice.dto.UserLogin;
 import projects.gsc.usersservice.service.UserService;
 
 @RestController
@@ -24,4 +25,10 @@ public class UserController {
     public ResponseEntity<?> get(@RequestParam Long id){
         return ResponseEntity.ok(userService.getUserBy(id));
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody UserLogin userLogin){
+        return ResponseEntity.ok(userService.loginUser(userLogin));
+    }
+
 }
