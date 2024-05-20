@@ -1,0 +1,13 @@
+.home {
+  position: relative;
+}
+
+.slider {
+  position: absolute;
+  height: 60vh;
+  width: 80vw;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%);
+  padding: 0;
+}
