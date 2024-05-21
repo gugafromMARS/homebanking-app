@@ -1,0 +1,15 @@
+.footer {
+  position: relative;
+  background-image: url(/Users/goncalocravo/Desktop/Coding/Projects/homebanking-app/frontend/src/assets/bc.jpg);
+  text-align: center;
+  height: 150px;
+  font-size: 12px;
+}
+
+.footer p {
+  font-weight: 700;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}

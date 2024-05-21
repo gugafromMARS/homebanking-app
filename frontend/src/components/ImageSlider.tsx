@@ -10,7 +10,7 @@ import {
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import DATA from "../data.tsx";
+import { DATA } from "../data.tsx";
 import "./ImageSlider.css";
 
 export default function ImageSlider() {
@@ -31,6 +31,7 @@ export default function ImageSlider() {
         <SwiperSlide key={id} className="slider-content">
           <div className="slider-tittle">
             <h1>{phrase}</h1>
+            <button>Ok</button>
           </div>
           <div className="slider-img">
             <img src={src} alt="image" />
