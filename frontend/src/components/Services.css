@@ -1,0 +1,22 @@
+.services {
+  height: 80vh;
+  margin-top: 150px;
+  text-align: center;
+}
+
+.services-title {
+  height: 100px;
+}
+
+.services-title h1 {
+  padding-top: 40px;
+  font-size: 56px;
+  font-weight: 800;
+}
+
+.service {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  margin-top: 150px;
+}
