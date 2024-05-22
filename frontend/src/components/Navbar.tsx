@@ -1,47 +1,17 @@
 "use client";
-import { FunctionComponent, ReactElement, useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
-} from "framer-motion";
+import { FunctionComponent, ReactElement } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../utils/cn";
 import { NavLink } from "react-router-dom";
 import { links } from "../data";
 
 export const Navbar: FunctionComponent = (): ReactElement => {
-  const { scrollYProgress } = useScroll();
-
-  const [visible, setVisible] = useState(false);
-
-  useMotionValueEvent(scrollYProgress, "change", (current) => {
-    // Check if current is not undefined and is a number
-    if (typeof current === "number") {
-      const direction = current! - scrollYProgress.getPrevious()!;
-
-      if (scrollYProgress.get() < 0.05) {
-        setVisible(false);
-      } else {
-        if (direction < 0) {
-          setVisible(true);
-        } else {
-          setVisible(false);
-        }
-      }
-    }
-  });
-
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence>
       <motion.div
         initial={{
-          opacity: 1,
-          y: -100,
-        }}
-        animate={{
-          y: visible ? 0 : -100,
-          opacity: visible ? 1 : 0,
+          opacity: 0.9,
+          y: 0,
         }}
         transition={{
           duration: 0.2,
@@ -61,10 +31,12 @@ export const Navbar: FunctionComponent = (): ReactElement => {
             <span className="hidden sm:block text-sm">{name}</span>
           </NavLink>
         ))}
-        <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
-          <span>Login</span>
-          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
-        </button>
+        <NavLink to={"/login"}>
+          <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
+            <span>Login</span>
+            <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
+          </button>
+        </NavLink>
       </motion.div>
     </AnimatePresence>
   );

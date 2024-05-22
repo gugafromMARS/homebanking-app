@@ -1,18 +1,40 @@
-.home {
-  background-color: white;
+.home-title {
+  position: relative;
+  height: 100px;
+  margin-top: 100px;
+}
+
+.home-title h1 {
+  position: absolute;
+  font-size: 56px;
+  font-weight: 800;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .slider {
   height: 60vh;
   width: 80vw;
   padding: 0;
-  margin-top: 240px;
+  margin-top: 70px;
   margin-left: 200px;
+}
+
+.home-block {
+  position: fixed;
+  height: 200%;
+  width: 100%;
+  background-color: black;
+  top: -100%;
+  right: -74%;
+  transform: rotate(-30deg);
+  z-index: -1;
 }
 
 .services {
   margin-top: 200px;
-  background-image: url(/Users/goncalocravo/Desktop/Coding/Projects/homebanking-app/frontend/src/assets/bc.jpg);
+  background-image: url(/Users/goncalocravo/Desktop/Coding/Projects/homebanking-app/frontend/src/assets/bc3.jpg);
 }
 
 .form {
