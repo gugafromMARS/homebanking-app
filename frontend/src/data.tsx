@@ -61,7 +61,7 @@ export const links: { id: number; name: string; path: string }[] = [
   },
   {
     id: 2,
-    name: "Services",
-    path: "/services",
+    name: "Dashboard",
+    path: "/dashboard",
   },
 ];
