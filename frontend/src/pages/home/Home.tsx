@@ -21,7 +21,6 @@ export default function Home() {
         <h1>Sign up</h1>
         <Form />
       </section>
-      <div className="home-block"></div>
 
       <Footer />
     </main>

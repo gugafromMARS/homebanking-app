@@ -1,0 +1,64 @@
+.dashboard {
+  height: 66.5vh;
+  width: 100%;
+  padding: 150px 100px 40px 100px;
+}
+
+.operations {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 200px 100px 100px;
+  row-gap: 30px;
+  column-gap: 30px;
+  height: 100%;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.user {
+  display: flex;
+  background-image: url(/Users/goncalocravo/Desktop/Coding/Projects/homebanking-app/frontend/src/assets/bc3.jpg);
+  grid-column: span 2;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.4);
+  -ms-interpolation-mode: bicubic;
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 20px;
+}
+.user-name {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.user img {
+  height: 100%;
+  margin: 0 100px;
+  width: auto;
+}
+.user-info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 20px 150px;
+  width: 500px;
+}
+
+.operation {
+  height: 100px;
+  width: 100px;
+}
+
+.green {
+  background-color: green;
+}
+.yellow {
+  background-color: yellow;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.blue {
+  background-color: blue;
+}
