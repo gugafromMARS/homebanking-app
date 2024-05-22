@@ -14,7 +14,7 @@ export const Login: FunctionComponent = (): ReactElement => {
           <Footer />
         </div>
       </div>
-      <div className="home-block"></div>
+      <div className="login-block"></div>
     </>
   );
 };

@@ -65,3 +65,10 @@ export const links: { id: number; name: string; path: string }[] = [
     path: "/dashboard",
   },
 ];
+
+export const operations: { id: number; name: string; color: string }[] = [
+  { id: 1, name: "Deposit", color: "yellow" },
+  { id: 2, name: "Withdraw", color: "green" },
+  { id: 3, name: "Payment", color: "orange" },
+  { id: 4, name: "Transfer", color: "blue" },
+];

@@ -10,3 +10,14 @@
 .footer {
   margin-top: 213px;
 }
+
+.login-block {
+  position: fixed;
+  height: 200%;
+  width: 100%;
+  background-color: black;
+  top: -100%;
+  right: -74%;
+  transform: rotate(-30deg);
+  z-index: -1;
+}

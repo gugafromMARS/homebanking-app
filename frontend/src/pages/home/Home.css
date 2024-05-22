@@ -21,23 +21,26 @@
   margin-left: 200px;
 }
 
-.home-block {
+.home-block1 {
   position: fixed;
-  height: 200%;
+  height: 100%;
   width: 100%;
   background-color: black;
   top: -100%;
-  right: -74%;
-  transform: rotate(-30deg);
+  right: -50%;
+  transform: rotate(64deg);
   z-index: -1;
 }
 
 .services {
   margin-top: 200px;
   background-image: url(/Users/goncalocravo/Desktop/Coding/Projects/homebanking-app/frontend/src/assets/bc3.jpg);
+  -webkit-mask-image: linear-gradient(white 70%, transparent 80%);
+  mask-image: linear-gradient(white 58%, transparent 80%);
 }
 
 .form {
+  position: relative;
   margin-bottom: 200px;
 }
 
