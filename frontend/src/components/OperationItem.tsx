@@ -1,4 +1,6 @@
 import { cn } from "../utils/cn";
+import CIcon from "@coreui/icons-react";
+import { cilBank, cilGraph, cilCart, cilWallet } from "@coreui/icons";
 
 export const OperationItem = ({
   className,
@@ -11,7 +13,7 @@ export const OperationItem = ({
   title?: string | React.ReactNode;
   description?: string | React.ReactNode;
   header?: React.ReactNode;
-  icon?: React.ReactNode;
+  icon?: string[];
 }) => {
   return (
     <div

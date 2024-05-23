@@ -4,6 +4,7 @@ import { operations } from "../../data";
 import { OperationItem } from "../../components/OperationItem";
 import Footer from "../../components/Footer";
 import image from "../../assets/user.png";
+import CIcon from "@coreui/icons-react";
 
 export const Dashboard: FunctionComponent = (): ReactElement => {
   const date = new Date();
@@ -19,20 +20,32 @@ export const Dashboard: FunctionComponent = (): ReactElement => {
         <div className="operations">
           <div className="user">
             <div className="user-img">
-              <img src={image} alt="user" />
+              <img src={image} alt="" />
             </div>
             <div className="user-info">
-              <p className="user-name">Olá, Admin</p>
+              <p>Olá, Admin</p>
               <p>{currentDate}</p>
-              <p>Balance = {10000}€</p>
+              <p>Balance = 10000 $</p>
             </div>
           </div>
-          {operations.map((operation) => (
-            <OperationItem key={operation.id} title={operation.name} />
-          ))}
+          {operations.map(({ id, name, icon }, index) => {
+            return (
+              <div
+                key={index}
+                className={`operation ${id} ${
+                  name == "Deposit" || name == "Movements" ? "end" : ""
+                } row-span-1 rounded-2xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-black dark:border-white/[0.2] bg-white border border-transparent justify-between flex flex-col space-y-4 text-center`}
+              >
+                <div className="font-sans font-bold text-neutral-600 dark:text-neutral-200 mb-2 mt-2">
+                  {name}
+                </div>
+                <CIcon icon={icon} size="sm" />
+              </div>
+            );
+          })}
         </div>
       </section>
-      <Footer />
+      {/* <Footer /> */}
       <div className="login-block"></div>
     </>
   );

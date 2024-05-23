@@ -4,6 +4,7 @@ import img3 from "./assets/img3.jpg";
 import img4 from "./assets/img4.jpg";
 import btn1 from "./assets/btn1.jpg";
 import btn2 from "./assets/btn2.jpg";
+import { cilBank, cilGraph, cilCart, cilWallet } from "@coreui/icons";
 
 export const DATA: { id: number; src: string; phrase: string }[] = [
   {
@@ -66,9 +67,9 @@ export const links: { id: number; name: string; path: string }[] = [
   },
 ];
 
-export const operations: { id: number; name: string; color: string }[] = [
-  { id: 1, name: "Deposit", color: "yellow" },
-  { id: 2, name: "Withdraw", color: "green" },
-  { id: 3, name: "Payment", color: "orange" },
-  { id: 4, name: "Transfer", color: "blue" },
+export const operations: { id: string; name: string; icon: string[] }[] = [
+  { id: "first", name: "Deposit", icon: cilBank },
+  { id: "second", name: "Movements", icon: cilGraph },
+  { id: "third", name: "Payment", icon: cilCart },
+  { id: "fourth", name: "Transfer", icon: cilWallet },
 ];
