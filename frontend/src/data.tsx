@@ -5,6 +5,7 @@ import img4 from "./assets/img4.jpg";
 import btn1 from "./assets/btn1.jpg";
 import btn2 from "./assets/btn2.jpg";
 import { cilBank, cilGraph, cilCart, cilWallet } from "@coreui/icons";
+import { OperationType } from "../pages/dashboard/Dashboard";
 
 export const DATA: { id: number; src: string; phrase: string }[] = [
   {
@@ -67,9 +68,99 @@ export const links: { id: number; name: string; path: string }[] = [
   },
 ];
 
-export const operations: { id: string; name: string; icon: string[] }[] = [
+export const operations: {
+  id: string;
+  name: OperationType;
+  icon: string[];
+}[] = [
   { id: "first", name: "Deposit", icon: cilBank },
   { id: "second", name: "Movements", icon: cilGraph },
   { id: "third", name: "Payment", icon: cilCart },
   { id: "fourth", name: "Transfer", icon: cilWallet },
+];
+
+export const moves: {
+  type: string;
+  amount: number;
+  date: string;
+  color: string;
+  symbol: string;
+}[] = [
+  {
+    type: "Deposit",
+    amount: 15.58,
+    date: "22-05-2024",
+    color: "text-green-600",
+    symbol: "+",
+  },
+  {
+    type: "Payment",
+    amount: 12.21,
+    date: "24-05-2024",
+    color: "text-red-600",
+    symbol: "-",
+  },
+  {
+    type: "Transfer",
+    amount: 25.14,
+    date: "20-05-2024",
+    color: "text-red-600",
+    symbol: "-",
+  },
+  {
+    type: "Receipt",
+    amount: 55.02,
+    date: "19-05-2024",
+    color: "text-green-600",
+    symbol: "+",
+  },
+  {
+    type: "Receipt",
+    amount: 55.02,
+    date: "19-05-2024",
+    color: "text-green-600",
+    symbol: "+",
+  },
+  {
+    type: "Receipt",
+    amount: 55.02,
+    date: "19-05-2024",
+    color: "text-green-600",
+    symbol: "+",
+  },
+  {
+    type: "Receipt",
+    amount: 55.02,
+    date: "19-05-2024",
+    color: "text-green-600",
+    symbol: "+",
+  },
+  {
+    type: "Receipt",
+    amount: 55.02,
+    date: "19-05-2024",
+    color: "text-green-600",
+    symbol: "+",
+  },
+  {
+    type: "Receipt",
+    amount: 55.02,
+    date: "19-05-2024",
+    color: "text-green-600",
+    symbol: "+",
+  },
+  {
+    type: "Receipt",
+    amount: 55.02,
+    date: "19-05-2024",
+    color: "text-green-600",
+    symbol: "+",
+  },
+  {
+    type: "Receipt",
+    amount: 55.02,
+    date: "19-05-2024",
+    color: "text-green-600",
+    symbol: "+",
+  },
 ];
