@@ -1,0 +1,37 @@
+.home-slider {
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 22, 1) 0%,
+      rgba(0, 0, 22, 0.5) 40%,
+      rgba(0, 0, 22, 0.5) 60%,
+      rgba(0, 0, 22, 1) 100%
+    ),
+    url(/Users/goncalocravo/Desktop/Coding/Projects/homebanking-app/frontend/src/assets/bank2.jpg);
+}
+
+.home-title {
+  position: relative;
+  height: 100px;
+  letter-spacing: 1.5rem;
+}
+
+.home-title h1 {
+  position: absolute;
+  margin-top: 100px;
+  color: black;
+  font-size: 56px;
+  font-weight: 800;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.slider {
+  height: 60vh;
+  width: 80vw;
+  padding: 0;
+  margin: 200px auto;
+}

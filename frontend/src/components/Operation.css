@@ -1,0 +1,23 @@
+.operation {
+  height: 180px;
+  width: 180px;
+}
+
+.operation.end {
+  margin-left: 340px;
+}
+
+.operation.first {
+  grid-column-start: 1;
+}
+.operation.second {
+  grid-row-start: 3;
+}
+
+.operation.third {
+  grid-column-start: 3;
+}
+.operation.fourth {
+  grid-row-start: 3;
+  grid-column-start: 3;
+}

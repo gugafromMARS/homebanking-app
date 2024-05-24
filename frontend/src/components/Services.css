@@ -1,7 +1,15 @@
 .services {
   height: 100vh;
-  margin-top: 150px;
+  width: 100%;
   text-align: center;
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 22, 1) 0%,
+      rgba(0, 0, 22, 0.5) 40%,
+      rgba(0, 0, 22, 0.5) 60%,
+      rgba(0, 0, 22, 1) 100%
+    ),
+    url(/Users/goncalocravo/Desktop/Coding/Projects/homebanking-app/frontend/src/assets/bc3.jpg);
 }
 
 .services-title {
@@ -9,7 +17,7 @@
 }
 
 .services-title h1 {
-  padding-top: 40px;
+  padding-top: 150px;
   font-size: 56px;
   font-weight: 800;
 }
@@ -18,5 +26,5 @@
   display: flex;
   justify-content: center;
   gap: 100px;
-  margin-top: 150px;
+  margin-top: 250px;
 }

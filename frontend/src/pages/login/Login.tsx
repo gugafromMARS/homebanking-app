@@ -10,7 +10,7 @@ export const Login: FunctionComponent = (): ReactElement => {
         <section className="login">
           <LoginInput />
         </section>
-        <div className="footer">
+        <div className="footer-login">
           <Footer />
         </div>
       </div>

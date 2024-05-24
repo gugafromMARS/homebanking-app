@@ -5,7 +5,7 @@ import "./Services.css";
 
 export const Services: FunctionComponent = (): ReactElement => {
   return (
-    <main id="services" className="services ">
+    <section id="services" className="services ">
       <div className="services-title">
         <h1>Services</h1>
       </div>
@@ -14,6 +14,6 @@ export const Services: FunctionComponent = (): ReactElement => {
           <Service key={card.id} cardInfo={card} />
         ))}
       </div>
-    </main>
+    </section>
   );
 };
