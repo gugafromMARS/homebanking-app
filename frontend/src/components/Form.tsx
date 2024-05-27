@@ -12,7 +12,7 @@ export function Form() {
   };
   return (
     <section className="form">
-      <div className="form-title">
+      <div className="form-title mb-5">
         <h1>Sign up</h1>
       </div>
       <div className=" max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">

@@ -6,7 +6,7 @@ import { Slider } from "../../components/Slider";
 
 export default function Home() {
   return (
-    <main>
+    <main className="home">
       <Slider />
       <Services />
       <Form />

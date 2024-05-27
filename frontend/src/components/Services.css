@@ -2,14 +2,18 @@
   height: 100vh;
   width: 100%;
   text-align: center;
-  background-image: linear-gradient(
-      180deg,
-      rgba(0, 0, 22, 1) 0%,
-      rgba(0, 0, 22, 0.5) 40%,
-      rgba(0, 0, 22, 0.5) 60%,
-      rgba(0, 0, 22, 1) 100%
+  position: relative;
+  background: linear-gradient(
+      to bottom,
+      rgba(82, 85, 77, 1) 0%,
+      rgba(0, 0, 0, 0) 40%,
+      rgba(0, 0, 0, 0) 80%,
+      rgba(82, 85, 77, 1) 100%
     ),
-    url(/Users/goncalocravo/Desktop/Coding/Projects/homebanking-app/frontend/src/assets/bc3.jpg);
+    url("/Users/goncalocravo/Desktop/Coding/Projects/homebanking-app/frontend/src/assets/acc.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .services-title {
@@ -20,6 +24,7 @@
   padding-top: 150px;
   font-size: 56px;
   font-weight: 800;
+  color: white;
 }
 
 .service {
