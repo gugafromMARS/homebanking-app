@@ -4,6 +4,9 @@ import Footer from "../../components/Footer";
 import { Operations } from "../../components/Operations";
 import { Moviments } from "../../components/Moviments";
 import { useState } from "react";
+import { Deposit } from "../../components/Deposit";
+import { Payment } from "../../components/Payment";
+import { Transfer } from "../../components/Transfer";
 
 export type OperationType =
   | "Movements"
@@ -27,6 +30,21 @@ export const Dashboard: FunctionComponent = (): ReactElement => {
       {activeOperation === "Movements" && (
         <section className="operations-section">
           <Moviments />
+        </section>
+      )}
+      {activeOperation === "Deposit" && (
+        <section className="operations-section">
+          <Deposit />
+        </section>
+      )}
+      {activeOperation === "Payment" && (
+        <section className="operations-section">
+          <Payment />
+        </section>
+      )}
+      {activeOperation === "Transfer" && (
+        <section className="operations-section">
+          <Transfer />
         </section>
       )}
       <div className={`${!activeOperation ? "dashboard-footer" : ""}`}>
