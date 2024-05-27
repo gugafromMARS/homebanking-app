@@ -2,7 +2,6 @@ import { FunctionComponent, ReactElement } from "react";
 import { Label } from "./label";
 import { Input } from "./input";
 import { cn } from "../utils/cn";
-import "./Transfer.css";
 
 export const Transfer: FunctionComponent = (): ReactElement => {
   const handleDeposit = (e: React.FormEvent<HTMLFormElement>) => {
