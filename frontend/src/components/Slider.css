@@ -4,10 +4,10 @@
   position: relative;
   background: linear-gradient(
       to bottom,
-      rgba(64, 165, 120, 1) 0%,
+      rgba(0, 40, 41, 1) 0%,
       rgba(0, 0, 0, 0) 40%,
       rgba(0, 0, 0, 0) 80%,
-      rgba(64, 165, 120, 1) 100%
+      rgba(0, 40, 41, 1) 100%
     ),
     url("/Users/goncalocravo/Desktop/Coding/Projects/homebanking-app/frontend/src/assets/money.jpg");
   background-size: cover;
