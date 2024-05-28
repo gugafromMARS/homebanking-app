@@ -5,16 +5,13 @@ import Footer from "../../components/Footer";
 
 export const Login: FunctionComponent = (): ReactElement => {
   return (
-    <>
+    <section className="login">
       <div className="login-area">
-        <section className="login">
-          <LoginInput />
-        </section>
-        <div className="footer-login">
-          <Footer />
-        </div>
+        <LoginInput />
       </div>
-      <div className="login-block"></div>
-    </>
+      <div className="footer-login">
+        <Footer />
+      </div>
+    </section>
   );
 };

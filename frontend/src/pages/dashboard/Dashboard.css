@@ -3,6 +3,21 @@
   height: 80vh;
   width: 100%;
   padding: 200px 100px 40px 100px;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 40, 41, 1) 0%,
+      rgba(0, 0, 0, 0) 40%,
+      rgba(0, 0, 0, 0) 80%,
+      rgba(0, 40, 41, 1) 100%
+    ),
+    url("/Users/goncalocravo/Desktop/Coding/Projects/homebanking-app/frontend/src/assets/dash.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+html {
+  background-color: rgba(0, 40, 41, 1);
 }
 
 .operations-section {
@@ -10,8 +25,16 @@
   width: 50%;
   margin: 0 auto;
   margin-top: 100px;
+  background-color: white;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
+  -ms-interpolation-mode: bicubic;
+  border-radius: 10px;
 }
 
 .dashboard-footer {
-  margin-top: 87px;
+  padding: 80px 0 0 0;
+}
+
+.foot {
+  padding: 200px 0 0 0;
 }

@@ -47,7 +47,7 @@ export const Dashboard: FunctionComponent = (): ReactElement => {
           <Transfer />
         </section>
       )}
-      <div className={`${!activeOperation ? "dashboard-footer" : ""}`}>
+      <div className={`${!activeOperation ? "dashboard-footer" : "foot"}`}>
         <Footer />
       </div>
       <div className="login-block"></div>
