@@ -1,13 +1,34 @@
 "use client";
-import React from "react";
+import React, { FunctionComponent, ReactElement, useRef } from "react";
 import { Label } from "./label";
 import { Input } from "./input";
 import { cn } from "../utils/cn";
+import { useNavigate } from "react-router-dom";
 
-export function LoginInput() {
+interface UserLogin {
+  email: string;
+  pwd: string;
+}
+
+interface LoginProps {
+  handleLogin: (user: UserLogin) => void;
+}
+
+export const LoginInput: FunctionComponent<LoginProps> = ({
+  handleLogin,
+}): ReactElement => {
+  const name = useRef<HTMLInputElement>(null);
+  const pass = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
+    const newUser: UserLogin = {
+      email: name.current.value,
+      pwd: pass.current.value,
+    };
+    handleLogin(newUser);
+    navigate("/dashboard");
   };
   return (
     <div className=" max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
@@ -21,11 +42,21 @@ export function LoginInput() {
       <form className="my-8" onSubmit={handleSubmit}>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="projectmayhem@fc.com" type="email" />
+          <Input
+            ref={name}
+            id="email"
+            placeholder="projectmayhem@fc.com"
+            type="email"
+          />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
-          <Input id="password" placeholder="••••••••" type="password" />
+          <Input
+            ref={pass}
+            id="password"
+            placeholder="••••••••"
+            type="password"
+          />
         </LabelInputContainer>
 
         <button
@@ -40,7 +71,7 @@ export function LoginInput() {
       </form>
     </div>
   );
-}
+};
 
 const BottomGradient = () => {
   return (

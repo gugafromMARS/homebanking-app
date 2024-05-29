@@ -62,6 +62,11 @@ export const Form: FunctionComponent<FormProps> = ({
         {isPassCorrect == false && (
           <h2 className="text-red-500 text-center">Credentials are wrong</h2>
         )}
+        {isPassCorrect && (
+          <h2 className="text-green-500 text-center">
+            User created successfully
+          </h2>
+        )}
         <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
           Welcome to SafeNetBank
         </h2>
@@ -111,7 +116,9 @@ export const Form: FunctionComponent<FormProps> = ({
               Password
             </Label>
             <Input
-              className={`${isPassCorrect === false ? "bg-red-200" : ""}`}
+              className={`${
+                isPassCorrect === false ? "bg-red-200" : "bg-green-200"
+              }`}
               ref={pass}
               id="password"
               placeholder="••••••••"
@@ -126,7 +133,9 @@ export const Form: FunctionComponent<FormProps> = ({
               Re-type password
             </Label>
             <Input
-              className={`${isPassCorrect === false ? "bg-red-200" : ""}`}
+              className={`${
+                isPassCorrect === false ? "bg-red-200" : "bg-green-200"
+              }`}
               ref={retryPass}
               id="retryPassword"
               placeholder="••••••••"
