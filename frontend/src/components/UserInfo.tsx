@@ -25,9 +25,18 @@ export const UserInfo: FunctionComponent<OperationProps> = ({
         <img src={image} alt="" />
       </div>
       <div className="user-info">
-        <p>Olá, Admin</p>
-        <p>{currentDate}</p>
-        <p>Balance = 10000 $</p>
+        <p>
+          <span>{currentDate}</span>
+        </p>
+        <p>
+          Olá, <span>Admin</span>
+        </p>
+        <p>
+          <span>Number Account</span>: 12924
+        </p>
+        <p>
+          <span>Balance</span>= 10000€
+        </p>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ import projects.gsc.usersservice.service.UserService;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin(origins = "*")
 @AllArgsConstructor
 public class UserController {
 

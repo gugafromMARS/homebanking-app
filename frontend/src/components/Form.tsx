@@ -1,21 +1,67 @@
 "use client";
-import React from "react";
+import React, {
+  FunctionComponent,
+  ReactElement,
+  useRef,
+  useState,
+} from "react";
 import { Label } from "./label";
 import { Input } from "./input";
 import { cn } from "../utils/cn";
 import "./Form.css";
 
-export function Form() {
+interface User {
+  name: string;
+  age: number;
+  address: string;
+  email: string;
+  pwd: string;
+}
+
+interface FormProps {
+  handleRegister: (user: User) => void;
+}
+
+export const Form: FunctionComponent<FormProps> = ({
+  handleRegister,
+}): ReactElement => {
+  const [isPassCorrect, setIsPassCorrect] = useState<boolean | null>(null);
+
+  const name = useRef<HTMLInputElement>(null);
+  const age = useRef<HTMLInputElement>(null);
+  const address = useRef<HTMLInputElement>(null);
+  const email = useRef<HTMLInputElement>(null);
+  const pass = useRef<HTMLInputElement>(null);
+  const retryPass = useRef<HTMLInputElement>(null);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
+
+    if (pass.current.value !== retryPass.current.value) {
+      setIsPassCorrect(false);
+      return;
+    }
+    const newUser: User = {
+      name: name.current.value,
+      age: age.current.value,
+      address: address.current.value,
+      email: email.current.value,
+      pwd: pass.current.value,
+    };
+    setIsPassCorrect(true);
+
+    handleRegister(newUser);
   };
+
   return (
     <section className="form">
       <div className="form-title mb-5">
         <h1>Sign up</h1>
       </div>
       <div className=" max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
+        {isPassCorrect == false && (
+          <h2 className="text-red-500 text-center">Credentials are wrong</h2>
+        )}
         <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
           Welcome to SafeNetBank
         </h2>
@@ -27,31 +73,64 @@ export function Form() {
           <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
             <LabelInputContainer className="mb-4">
               <Label htmlFor="fullname">Full name</Label>
-              <Input id="fullname" placeholder="Tyler White" type="text" />
+              <Input
+                ref={name}
+                id="fullname"
+                placeholder="Tyler White"
+                type="text"
+              />
             </LabelInputContainer>
           </div>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="age">Age</Label>
-            <Input id="age" type="date" />
+            <Input ref={age} id="age" type="number" />
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="address">Address</Label>
-            <Input id="email" placeholder="Av. White Street" type="text" />
+            <Input
+              ref={address}
+              id="address"
+              placeholder="Av. White Street"
+              type="text"
+            />
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="email">Email Address</Label>
-            <Input id="email" placeholder="projectmayhem@fc.com" type="email" />
+            <Input
+              ref={email}
+              id="email"
+              placeholder="projectmayhem@fc.com"
+              type="email"
+            />
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="password">Password</Label>
-            <Input id="password" placeholder="••••••••" type="password" />
+            <Label
+              className={`${isPassCorrect === false ? "text-red-500" : ""}`}
+              htmlFor="password"
+            >
+              Password
+            </Label>
+            <Input
+              className={`${isPassCorrect === false ? "bg-red-200" : ""}`}
+              ref={pass}
+              id="password"
+              placeholder="••••••••"
+              type="password"
+            />
           </LabelInputContainer>
           <LabelInputContainer className="mb-8">
-            <Label htmlFor="twitterpassword">Re-type password</Label>
+            <Label
+              className={`${isPassCorrect === false ? "text-red-500" : ""}`}
+              htmlFor="twitterpassword"
+            >
+              Re-type password
+            </Label>
             <Input
-              id="twitterpassword"
+              className={`${isPassCorrect === false ? "bg-red-200" : ""}`}
+              ref={retryPass}
+              id="retryPassword"
               placeholder="••••••••"
-              type="twitterpassword"
+              type="password"
             />
           </LabelInputContainer>
 
@@ -68,7 +147,7 @@ export function Form() {
       </div>
     </section>
   );
-}
+};
 
 const BottomGradient = () => {
   return (
