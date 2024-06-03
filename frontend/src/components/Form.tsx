@@ -117,7 +117,11 @@ export const Form: FunctionComponent<FormProps> = ({
             </Label>
             <Input
               className={`${
-                isPassCorrect === false ? "bg-red-200" : "bg-green-200"
+                isPassCorrect === false
+                  ? "bg-red-200"
+                  : isPassCorrect === true
+                  ? "bg-green-200"
+                  : ""
               }`}
               ref={pass}
               id="password"
@@ -134,7 +138,11 @@ export const Form: FunctionComponent<FormProps> = ({
             </Label>
             <Input
               className={`${
-                isPassCorrect === false ? "bg-red-200" : "bg-green-200"
+                isPassCorrect === false
+                  ? "bg-red-200"
+                  : isPassCorrect === true
+                  ? "bg-green-200"
+                  : ""
               }`}
               ref={retryPass}
               id="retryPassword"

@@ -9,6 +9,7 @@ import projects.gsc.accountservice.service.AccountService;
 
 @RestController
 @RequestMapping("/api/account")
+@CrossOrigin(origins = "*")
 public class AccountController {
 
     private final AccountService accountService;
@@ -20,6 +21,11 @@ public class AccountController {
     @GetMapping
     public ResponseEntity<?> getAccount (@RequestParam Long id){
         return ResponseEntity.ok(accountService.getAccountById(id));
+    }
+
+    @GetMapping("/getAccounts")
+    public ResponseEntity<?> getAccounts(@RequestParam String email){
+        return ResponseEntity.ok(accountService.getAccountsByEmail(email));
     }
 
     @PostMapping

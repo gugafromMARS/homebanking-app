@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Deposit } from "../../components/Deposit";
 import { Payment } from "../../components/Payment";
 import { Transfer } from "../../components/Transfer";
+import { NoAccount } from "../../components/NoAccount";
 
 export type OperationType =
   | "Movements"
@@ -15,8 +16,25 @@ export type OperationType =
   | "Transfer"
   | null;
 
-export const Dashboard: FunctionComponent = (): ReactElement => {
+interface Accounts {
+  id: number;
+  ownerName: string;
+  ownerEmail: string;
+  balance: number;
+  accType: string;
+}
+
+interface UserDto {
+  ownerName: string;
+  ownerEmail: string;
+  accounts: Accounts[];
+}
+
+export const Dashboard: FunctionComponent<UserDto> = (
+  userDto: UserDto
+): ReactElement => {
   const [activeOperation, setActiveOperation] = useState<OperationType>(null);
+  const [haveAcc, setHaveAcc] = useState<boolean>(userDto.accounts);
 
   const handleOperationClick = (operation: OperationType): void => {
     setActiveOperation(operation);
@@ -25,7 +43,18 @@ export const Dashboard: FunctionComponent = (): ReactElement => {
   return (
     <>
       <section className="dashboard">
-        <Operations handleOperationClick={handleOperationClick} />
+        {haveAcc && (
+          <Operations
+            handleOperationClick={handleOperationClick}
+            user={userDto}
+          />
+        )}
+        {!haveAcc && (
+          <NoAccount
+            handleOperationClick={handleOperationClick}
+            user={userDto}
+          />
+        )}
       </section>
       {activeOperation === "Movements" && (
         <section className="operations-section">

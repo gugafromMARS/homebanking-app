@@ -3,19 +3,37 @@ import "./UserInfo.css";
 import image from "../assets/user.png";
 import { OperationType } from "../pages/dashboard/Dashboard";
 
+interface Accounts {
+  id: number;
+  ownerName: string;
+  ownerEmail: string;
+  balance: number;
+  accType: string;
+}
+
+interface UserDto {
+  ownerName: string;
+  ownerEmail: string;
+  accounts: Accounts[];
+}
+
 interface OperationProps {
   handleOperationClick: (operation: OperationType) => void;
+  user: UserDto;
 }
 
 export const UserInfo: FunctionComponent<OperationProps> = ({
   handleOperationClick,
+  user,
 }): ReactElement => {
   const date = new Date();
-
   const day = date.getDate();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
   const currentDate = `${day}-${month}-${year}`;
+
+  const haveAcc: boolean = user.user.accounts.length > 0;
+
   return (
     <div
       onClick={() => handleOperationClick(null)}
@@ -29,14 +47,19 @@ export const UserInfo: FunctionComponent<OperationProps> = ({
           <span>{currentDate}</span>
         </p>
         <p>
-          Olá, <span>Admin</span>
+          Olá, <span>{user.user.ownerName}</span>
         </p>
-        <p>
-          <span>Number Account</span>: 12924
-        </p>
-        <p>
-          <span>Balance</span>= 10000€
-        </p>
+
+        {haveAcc && (
+          <p>
+            <span>Number Account</span>: 12924
+          </p>
+        )}
+        {haveAcc && (
+          <p>
+            <span>Balance</span>= 10000€
+          </p>
+        )}
       </div>
     </div>
   );

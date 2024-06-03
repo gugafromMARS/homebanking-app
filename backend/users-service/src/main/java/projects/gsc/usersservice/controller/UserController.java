@@ -22,9 +22,10 @@ public class UserController {
         return new ResponseEntity<>(userService.createUser(userCreateDto), HttpStatus.CREATED);
     }
 
+
     @GetMapping
-    public ResponseEntity<?> get(@RequestParam Long id){
-        return ResponseEntity.ok(userService.getUserBy(id));
+    public ResponseEntity<?> get(@RequestParam String  email){
+        return ResponseEntity.ok(userService.getUserByEmail(email));
     }
 
     @PostMapping("/login")
