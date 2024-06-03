@@ -32,16 +32,19 @@ public class UserService {
     }
 
 
-    public UserDto getUserBy(Long id) {
-        return userRepository.findById(id).map(user -> userConverter.toDto(user))
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+    public UserDto getUserByEmail(String email) {
+       User existingUser = userRepository.findByEmail(email);
+       if(existingUser == null){
+           throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+       }
+       return userConverter.toDto(existingUser);
     }
 
-    public boolean loginUser(UserLogin userLogin) {
+    public UserDto loginUser(UserLogin userLogin) {
         User existingUser = userRepository.findByEmail(userLogin.getEmail());
         if(existingUser == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
-        return authenticationImp.login(existingUser, userLogin);
+        return authenticationImp.login(existingUser, userLogin) ? userConverter.toDto(existingUser) : null;
     }
 }

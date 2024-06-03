@@ -89,4 +89,8 @@ public class AccountService {
     }
 
 
+    public List<AccountDto> getAccountsByEmail(String email) {
+        return accountRepository.findByOwnerEmail(email).stream().map(account -> converter.toDto(account))
+                .toList();
+    }
 }

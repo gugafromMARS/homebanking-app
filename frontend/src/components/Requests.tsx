@@ -53,3 +53,14 @@ export async function loginUser(user: userLogin) {
 
   return respData;
 }
+
+export async function getAccounts(email: string) {
+  const response: Response = await fetch(
+    `http://localhost:8081/api/account/getAccounts?email=${email}`
+  );
+  const respData = await response.json();
+  if (!response.ok) {
+    throw new Error("Failed to get accounts");
+  }
+  return respData;
+}

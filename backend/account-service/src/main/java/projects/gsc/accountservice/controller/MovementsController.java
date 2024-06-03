@@ -9,6 +9,7 @@ import projects.gsc.accountservice.service.AccountService;
 
 @RestController
 @RequestMapping("/api/account/movements")
+@CrossOrigin(origins = "*")
 public class MovementsController {
 
     private final AccountService accountService;

@@ -1,5 +1,10 @@
 "use client";
-import React, { FunctionComponent, ReactElement, useRef } from "react";
+import React, {
+  FunctionComponent,
+  ReactElement,
+  useRef,
+  useState,
+} from "react";
 import { Label } from "./label";
 import { Input } from "./input";
 import { cn } from "../utils/cn";
@@ -17,18 +22,24 @@ interface LoginProps {
 export const LoginInput: FunctionComponent<LoginProps> = ({
   handleLogin,
 }): ReactElement => {
+  const [error, setError] = useState<Error | null>();
   const name = useRef<HTMLInputElement>(null);
   const pass = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newUser: UserLogin = {
       email: name.current.value,
       pwd: pass.current.value,
     };
-    handleLogin(newUser);
-    navigate("/dashboard");
+
+    try {
+      await handleLogin(newUser);
+      navigate("/dashboard");
+    } catch (error: any) {
+      setError(new Error(error.message || "Failed to login"));
+    }
   };
   return (
     <div className=" max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">

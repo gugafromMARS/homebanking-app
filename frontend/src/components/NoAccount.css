@@ -1,0 +1,13 @@
+.no-acc-btn {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.no-account h2 {
+  text-align: center;
+}
+
+.choose-acc {
+  margin-bottom: 1rem;
+}
