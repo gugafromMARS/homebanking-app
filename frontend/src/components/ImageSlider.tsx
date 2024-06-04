@@ -31,7 +31,7 @@ export default function ImageSlider() {
         <SwiperSlide key={id} className="slider-content">
           <div className="slider-tittle">
             <h1>{phrase}</h1>
-            <button>Ok</button>
+            <button className="tittle-btn">Ok</button>
           </div>
           <div className="slider-img">
             <img src={src} alt="image" />

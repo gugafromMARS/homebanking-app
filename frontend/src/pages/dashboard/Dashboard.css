@@ -1,19 +1,13 @@
 .dashboard {
-  position: relative;
-  height: 80vh;
-  width: 100%;
-  padding: 200px 100px 40px 100px;
-  background: linear-gradient(
-      to bottom,
-      rgba(0, 40, 41, 1) 0%,
-      rgba(0, 0, 0, 0) 40%,
-      rgba(0, 0, 0, 0) 80%,
-      rgba(0, 40, 41, 1) 100%
-    ),
-    url("/Users/goncalocravo/Desktop/Coding/Projects/homebanking-app/frontend/src/assets/dash.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  display: grid;
+  grid-template-columns: 1fr 0.4fr;
+  grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr;
+  gap: 20px;
+  height: 150vh;
+  width: 90%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 120px 50px 100px 50px;
 }
 
 html {
@@ -37,4 +31,24 @@ html {
 
 .foot {
   padding: 200px 0 0 0;
+}
+
+.card-section {
+  height: 200px;
+  grid-column-start: 1;
+  grid-row-start: 2;
+  margin-top: 20px;
+}
+.chart-section {
+  text-align: center;
+  grid-column-start: 1;
+  grid-row-start: 3;
+  margin-top: 20px;
+}
+
+.operations-dash {
+  height: 200px;
+  grid-column-start: 2;
+  grid-row-start: 1;
+  margin: 20px 0;
 }

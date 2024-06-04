@@ -1,23 +1,26 @@
 .operation {
-  height: 180px;
-  width: 180px;
+  height: 150px;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
-.operation.end {
-  margin-left: 340px;
+.position-first {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  align-self: center;
 }
-
-.operation.first {
-  grid-column-start: 1;
+.position-second {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  align-self: center;
 }
-.operation.second {
+.position-third {
+  grid-column-start: 2;
   grid-row-start: 3;
+  align-self: center;
 }
-
-.operation.third {
-  grid-column-start: 3;
-}
-.operation.fourth {
-  grid-row-start: 3;
-  grid-column-start: 3;
+.position-fourth {
+  grid-column-start: 2;
+  grid-row-start: 4;
+  align-self: center;
 }

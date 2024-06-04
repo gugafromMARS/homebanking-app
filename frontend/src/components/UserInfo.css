@@ -1,25 +1,32 @@
 .user {
-  grid-row: span 3;
-  grid-column-start: 2;
-  grid-row-start: 2;
-  height: 350px;
-  width: 250px;
-  margin: 0 auto;
-}
-.user-img img {
-  height: 100%;
+  height: 250px;
   width: 100%;
   margin: 0 auto;
-  text-align: center;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
+  -ms-interpolation-mode: bicubic;
+  border-radius: 10px;
 }
 
 .user-info {
+  height: 100%;
+  background-color: aqua;
   display: flex;
-  text-align: center;
-  flex-direction: column;
   font-size: 15px;
+}
+
+.user-info img {
+  background-color: aqua;
+  height: 90%;
+  width: 25%;
 }
 
 .user-info span {
   font-weight: bold;
+}
+
+.info {
+  width: 100%;
+  text-align: center;
+  flex-direction: column;
+  padding: 20px;
 }

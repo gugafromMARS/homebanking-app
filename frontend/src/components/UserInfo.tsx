@@ -2,6 +2,7 @@ import { FunctionComponent, ReactElement } from "react";
 import "./UserInfo.css";
 import image from "../assets/user.png";
 import { OperationType } from "../pages/dashboard/Dashboard";
+import { NoAccount } from "./NoAccount";
 
 interface Accounts {
   id: number;
@@ -37,19 +38,21 @@ export const UserInfo: FunctionComponent<OperationProps> = ({
   return (
     <div
       onClick={() => handleOperationClick(null)}
-      className={`user rounded-2xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-black dark:border-white/[0.2] bg-white border border-transparent flex-col space-y-4 mt-0 self-center`}
+      className={`user rounded-2xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-black dark:border-white/[0.2] bg-white border border-transparent flex-col space-y-4`}
     >
-      <div className="user-img">
-        <img src={image} alt="" />
-      </div>
       <div className="user-info">
-        <p>
-          <span>{currentDate}</span>
-        </p>
-        <p>
-          Olá, <span>{user.user.ownerName}</span>
-        </p>
-
+        <img src={image} alt="" />
+        <div className="info">
+          <p>
+            <span>{currentDate}</span>
+          </p>
+          <p>
+            Olá, <span>{user.user.ownerName}</span>
+          </p>
+        </div>
+        {/*!haveAcc && (
+          <NoAccount handleOperationClick={handleOperationClick} user={user} />
+        )*/}
         {haveAcc && (
           <p>
             <span>Number Account</span>: 12924

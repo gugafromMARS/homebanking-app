@@ -64,3 +64,20 @@ export async function getAccounts(email: string) {
   }
   return respData;
 }
+
+export async function getCoords(city: string) {
+  const coords: Response = await fetch(
+    `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=65fd81137481c2dbe32e31dc3197545f`
+  );
+
+  const response: Response = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=65fd81137481c2dbe32e31dc3197545f`
+  );
+
+  const respData = await response.json();
+  if (!response.ok) {
+    throw new Error("Failed to get city");
+  }
+
+  return respData;
+}
