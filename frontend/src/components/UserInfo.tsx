@@ -42,27 +42,33 @@ export const UserInfo: FunctionComponent<OperationProps> = ({
     >
       <div className="user-info">
         <img src={image} alt="" />
-        <div className="info">
-          <p>
-            <span>{currentDate}</span>
-          </p>
-          <p>
-            Olá, <span>{user.user.ownerName}</span>
-          </p>
-        </div>
-        {/*!haveAcc && (
+        <div className="information">
+          <div className="info">
+            <p>
+              <span>{currentDate}</span>
+            </p>
+            <p>
+              Olá, <span>{user.user.ownerName}</span>
+            </p>
+          </div>
+          {/*!haveAcc && (
           <NoAccount handleOperationClick={handleOperationClick} user={user} />
         )*/}
-        {haveAcc && (
-          <p>
-            <span>Number Account</span>: 12924
-          </p>
-        )}
-        {haveAcc && (
-          <p>
-            <span>Balance</span>= 10000€
-          </p>
-        )}
+          <div className="acc-info">
+            <div className="balance">
+              <h1>Balance</h1>
+              <p>10000.00€</p>
+            </div>
+            <div className="income">
+              <h1>Income</h1>
+              <p>+1000.00€</p>
+            </div>
+            <div className="outcome">
+              <h1>Expense</h1>
+              <p>-600.00€</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

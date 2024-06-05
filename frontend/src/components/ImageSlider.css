@@ -1,5 +1,5 @@
 .mySwiper {
-  background-color: rgba(128, 128, 128, 0.349);
+  background-color: white;
   box-shadow: 5px 5px 10px 5px rgba(16, 16, 16, 0.2);
   border-radius: 10px;
   --swiper-navigation-sides-offset: 10px;
@@ -21,10 +21,11 @@
   display: inline-block;
   padding: 60px;
   margin: 0;
+  color: black;
 }
 
 .slider-tittle h1 {
-  color: white;
+  color: black;
 }
 
 .slider-tittle button {

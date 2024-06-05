@@ -1,8 +1,7 @@
 import { FunctionComponent, ReactElement } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
+import { EffectCards } from "swiper/modules";
 
-import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "react-multi-carousel/lib/styles.css";
@@ -24,19 +23,14 @@ const cards: { id: number; name: string; accType: string }[] = [
 export const Card: FunctionComponent = (): ReactElement => {
   return (
     <Swiper
-      cssMode={true}
-      navigation={true}
-      mousewheel={true}
-      keyboard={true}
-      pagination={{
-        clickable: true,
-      }}
-      modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-      className="card-container"
+      effect={"cards"}
+      grabCursor={true}
+      modules={[EffectCards]}
+      className=" swiperr"
     >
       {cards.map(({ id, name, accType }) => (
-        <SwiperSlide>
-          <div className="card-info">
+        <SwiperSlide className="swiper-sliderr tranding-slide card-bg">
+          <div className="card-swiper">
             <h1>SafeNet Bank</h1>
             <div className="card-user-info">
               <h1>

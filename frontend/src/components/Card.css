@@ -1,34 +1,46 @@
-.card-container {
-  height: 90%;
-  width: 35%;
-  background-color: rgba(44, 43, 43, 0.5);
-
-  --swiper-navigation-sides-offset: 5px;
-  --swiper-navigation-size: 30px;
-  --swiper-navigation-color: red;
-  --swiper-pagination-color: red;
-  --swiper-pagination-bottom: 5px;
-  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.4);
-  -ms-interpolation-mode: bicubic;
-  border-radius: 10px;
-  padding: 20px 30px;
+.swiperr {
+  width: 50%;
+  height: 300px;
+  background: transparent;
 }
 
-.card-info {
-  margin-bottom: 20px;
+.swiper-sliderr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
 }
 
-.card-info {
-  font-size: 1.3rem;
+.card-bg {
+  background: url("/Users/goncalocravo/Desktop/Coding/Projects/homebanking-app/frontend/src/assets/card.png");
+  background-size: cover;
+  object-fit: cover;
 }
 
-.card-user-info {
-  margin-top: 40px;
-  font-size: 0.8rem;
+.swiper-slide-prev {
+  opacity: 0;
 }
-.card-user-info h1 {
-  font-size: 0.9rem;
+
+.swiper-slide-next {
+  opacity: 0;
 }
-.card-user-info span {
+
+.card-swiper h1 {
+  margin-bottom: 70px;
+  font-size: 1.4rem;
   font-weight: bold;
+  text-align: start;
+}
+
+.card-user-info h1 {
+  font-size: 1.1rem;
+  text-align: start;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+.card-user-info h2 {
+  font-size: 1rem;
+  text-align: start;
+
+  font-weight: 500;
 }

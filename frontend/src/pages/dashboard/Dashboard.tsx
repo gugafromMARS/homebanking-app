@@ -68,6 +68,7 @@ export const Dashboard: FunctionComponent<UserDto> = (
               <Chart />
             </div>
             <div className="card-section">
+              <h1>Your Cards (swipe left and right)</h1>
               <Card />
             </div>
 
@@ -77,14 +78,13 @@ export const Dashboard: FunctionComponent<UserDto> = (
                 user={userDto}
               />
             </div>
+            <section className="movements-dash">
+              <h1>Movements</h1>
+              <Moviments />
+            </section>
           </>
         )}
 
-        {activeOperation === "Movements" && (
-          <section className="operations-section">
-            <Moviments />
-          </section>
-        )}
         {activeOperation === "Deposit" && (
           <section className="operations-section">
             <Deposit />

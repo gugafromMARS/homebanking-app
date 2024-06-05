@@ -9,19 +9,21 @@
 
 .user-info {
   height: 100%;
-  background-color: aqua;
+
   display: flex;
   font-size: 15px;
 }
 
 .user-info img {
-  background-color: aqua;
-  height: 90%;
+  height: 100%;
   width: 25%;
 }
 
 .user-info span {
   font-weight: bold;
+}
+.information {
+  width: 100%;
 }
 
 .info {
@@ -29,4 +31,40 @@
   text-align: center;
   flex-direction: column;
   padding: 20px;
+}
+.acc-info {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.balance {
+  height: 100px;
+  width: 200px;
+  padding: 20px;
+  background-color: rgb(255, 255, 255, 0.9);
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
+  -ms-interpolation-mode: bicubic;
+  border-radius: 10px;
+}
+
+.income {
+  height: 100px;
+  width: 200px;
+  padding: 20px;
+  background-color: rgb(130, 255, 5, 0.8);
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
+  -ms-interpolation-mode: bicubic;
+  border-radius: 10px;
+}
+
+.outcome {
+  height: 100px;
+  width: 200px;
+  padding: 20px;
+  background-color: rgb(255, 7, 7, 0.8);
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
+  -ms-interpolation-mode: bicubic;
+  border-radius: 10px;
 }
