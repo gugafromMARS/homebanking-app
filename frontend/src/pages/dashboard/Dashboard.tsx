@@ -7,7 +7,11 @@ import { useState } from "react";
 import { Deposit } from "../../components/Deposit";
 import { Payment } from "../../components/Payment";
 import { Transfer } from "../../components/Transfer";
-import { NoAccount } from "../../components/NoAccount";
+import { UserInfo } from "../../components/UserInfo";
+import Chart from "../../components/Chart";
+import { Card } from "../../components/Card";
+import { Operation } from "../../components/Operation";
+import { operations } from "../../data";
 
 export type OperationType =
   | "Movements"
@@ -43,43 +47,63 @@ export const Dashboard: FunctionComponent<UserDto> = (
   return (
     <>
       <section className="dashboard">
-        {haveAcc && (
-          <Operations
-            handleOperationClick={handleOperationClick}
+        <div className="user-information">
+          <UserInfo
             user={userDto}
+            handleOperationClick={handleOperationClick}
           />
+        </div>
+        {haveAcc && (
+          <>
+            <Operations
+              handleOperationClick={handleOperationClick}
+              user={userDto}
+            />
+            <Chart />
+          </>
         )}
         {!haveAcc && (
-          <NoAccount
-            handleOperationClick={handleOperationClick}
-            user={userDto}
-          />
+          <>
+            <div className="chart-section">
+              <Chart />
+            </div>
+            <div className="card-section">
+              <h1>Your Cards (swipe left and right)</h1>
+              <Card />
+            </div>
+
+            <div className="operations-dash">
+              <Operations
+                handleOperationClick={handleOperationClick}
+                user={userDto}
+              />
+            </div>
+            <section className="movements-dash">
+              <h1>Movements</h1>
+              <Moviments />
+            </section>
+          </>
+        )}
+
+        {activeOperation === "Deposit" && (
+          <section className="operations-section">
+            <Deposit />
+          </section>
+        )}
+        {activeOperation === "Payment" && (
+          <section className="operations-section">
+            <Payment />
+          </section>
+        )}
+        {activeOperation === "Transfer" && (
+          <section className="operations-section">
+            <Transfer />
+          </section>
         )}
       </section>
-      {activeOperation === "Movements" && (
-        <section className="operations-section">
-          <Moviments />
-        </section>
-      )}
-      {activeOperation === "Deposit" && (
-        <section className="operations-section">
-          <Deposit />
-        </section>
-      )}
-      {activeOperation === "Payment" && (
-        <section className="operations-section">
-          <Payment />
-        </section>
-      )}
-      {activeOperation === "Transfer" && (
-        <section className="operations-section">
-          <Transfer />
-        </section>
-      )}
       <div className={`${!activeOperation ? "dashboard-footer" : "foot"}`}>
         <Footer />
       </div>
-      <div className="login-block"></div>
     </>
   );
 };

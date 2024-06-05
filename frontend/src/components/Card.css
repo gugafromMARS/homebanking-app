@@ -1,0 +1,46 @@
+.swiperr {
+  width: 50%;
+  height: 300px;
+  background: transparent;
+}
+
+.swiper-sliderr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+.card-bg {
+  background: url("/Users/goncalocravo/Desktop/Coding/Projects/homebanking-app/frontend/src/assets/card.png");
+  background-size: cover;
+  object-fit: cover;
+}
+
+.swiper-slide-prev {
+  opacity: 0;
+}
+
+.swiper-slide-next {
+  opacity: 0;
+}
+
+.card-swiper h1 {
+  margin-bottom: 70px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: start;
+}
+
+.card-user-info h1 {
+  font-size: 1.1rem;
+  text-align: start;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+.card-user-info h2 {
+  font-size: 1rem;
+  text-align: start;
+
+  font-weight: 500;
+}
