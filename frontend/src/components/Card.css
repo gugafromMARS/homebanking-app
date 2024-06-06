@@ -1,6 +1,6 @@
 .swiperr {
   width: 50%;
-  height: 300px;
+  height: 280px;
   background: transparent;
 }
 
@@ -31,16 +31,17 @@
   font-weight: bold;
   text-align: start;
 }
+.card-user-info {
+  width: 250px;
+}
 
-.card-user-info h1 {
-  font-size: 1.1rem;
+.card-user-info h2 {
+  font-size: 0.9rem;
   text-align: start;
-  margin-bottom: 0;
+
   font-weight: 500;
 }
-.card-user-info h2 {
-  font-size: 1rem;
-  text-align: start;
 
-  font-weight: 500;
+.card-user-info span {
+  font-weight: bold;
 }

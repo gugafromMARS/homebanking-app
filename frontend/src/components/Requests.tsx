@@ -11,6 +11,14 @@ interface userLogin {
   pwd: string;
 }
 
+interface AccountCreateDto {
+  ownerName: string;
+  ownerEmail: string;
+  age: number;
+  address: string;
+  accType: string;
+}
+
 export async function createUser(user: User): Promise<void> {
   const response: Response = await fetch(
     "http://localhost:8080/api/user/register",
@@ -77,6 +85,24 @@ export async function getCoords(city: string) {
   const respData = await response.json();
   if (!response.ok) {
     throw new Error("Failed to get city");
+  }
+
+  return respData;
+}
+
+export async function createAcc(acc: AccountCreateDto) {
+  const response: Response = await fetch("http://localhost:8081/api/account", {
+    method: "POST",
+    body: JSON.stringify(acc),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const respData = await response.json();
+
+  if (!response.ok) {
+    throw new Error("Failed to create acc");
   }
 
   return respData;
