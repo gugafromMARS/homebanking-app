@@ -65,10 +65,16 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({
   const [error, setError] = useState<Error | null>(null);
   const [accActive, setAccActive] = useState<Accounts | null>(null);
   const [accMoves, setAccMoves] = useState<MovesDto[]>([]);
+  const [totalDeposit, setTotalDeposit] = useState<number>(0);
+  const [totalExpenses, setTotalExpenses] = useState<number>(0);
 
   useEffect(() => {
     handleAccs();
   }, [accs, accActive]);
+
+  useEffect(() => {
+    calculateTotals();
+  }, []);
 
   async function handleAccs() {
     try {
@@ -86,6 +92,23 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({
       setError(new Error(error.message || "Failed to create acc"));
     }
   }
+
+  const calculateTotals = (): void => {
+    let deposits: number = totalDeposit;
+    let expenses: number = totalExpenses;
+
+    if (accMoves.length > 0) {
+      accMoves.map((move) => {
+        if (move.type === "DEPOSIT") {
+          deposits = deposits + move.amount;
+        } else {
+          expenses = expenses + move.amount;
+        }
+      });
+    }
+    setTotalExpenses(expenses);
+    setTotalDeposit(deposits);
+  };
 
   const handleOperationClick = (operation: OperationType): void => {
     setActiveOperation(operation);
@@ -108,12 +131,16 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({
       <section className="dashboard">
         <div className="user-information rounded-2xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-black dark:border-white/[0.2] bg-white border border-transparent flex-col space-y-4">
           <UserInfo user={user} handleOperationClick={handleOperationClick} />
-          <AccInfo activeAcc={accActive} />
+          <AccInfo
+            activeAcc={accActive}
+            deposits={totalDeposit}
+            expenses={totalExpenses}
+          />
         </div>
         {accs.length > 0 && (
           <>
             <div className="chart-section">
-              <Chart />
+              <Chart movements={accMoves} />
             </div>
             <div className="card-section">
               <h1>Your Cards (swipe left and right)</h1>

@@ -11,10 +11,14 @@ interface Accounts {
 
 interface AccInfoProps {
   activeAcc: Accounts | null;
+  deposits: number;
+  expenses: number;
 }
 
 export const AccInfo: FunctionComponent<AccInfoProps> = ({
   activeAcc,
+  deposits,
+  expenses,
 }): ReactElement => {
   return (
     <div className="acc-info">
@@ -25,11 +29,13 @@ export const AccInfo: FunctionComponent<AccInfoProps> = ({
       </div>
       <div className="income">
         <h1>Income</h1>
-        <p>+1000.00€</p>
+        {!activeAcc && <p>0€</p>}
+        {activeAcc && <p>{deposits}</p>}
       </div>
       <div className="outcome">
         <h1>Expense</h1>
-        <p>-600.00€</p>
+        {!activeAcc && <p>0€</p>}
+        {activeAcc && <p>{expenses}</p>}
       </div>
     </div>
   );
