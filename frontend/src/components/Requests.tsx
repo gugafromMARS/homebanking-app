@@ -57,8 +57,6 @@ export async function loginUser(user: userLogin) {
     throw new Error("Failed to login");
   }
 
-  console.log(respData);
-
   return respData;
 }
 
@@ -103,6 +101,20 @@ export async function createAcc(acc: AccountCreateDto) {
 
   if (!response.ok) {
     throw new Error("Failed to create acc");
+  }
+
+  return respData;
+}
+
+export async function getMovements(accNumber: number) {
+  const response: Response = await fetch(
+    `http://localhost:8081/api/account/movements?id=${accNumber}`
+  );
+
+  const respData = response.json();
+
+  if (!response.ok) {
+    throw new Error("Failed to get account movements");
   }
 
   return respData;

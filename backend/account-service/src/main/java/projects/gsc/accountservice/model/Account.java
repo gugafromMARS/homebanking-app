@@ -5,9 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Entity
 @Table(name = "account")
@@ -27,7 +25,7 @@ public class Account {
     private int pin;
 
     @ElementCollection
-    private Map<String, Movement> movementsList;
+    private List<Movement> movementsList;
 
     public AccountBuilder builder (){
         return new AccountBuilder();
@@ -55,7 +53,7 @@ public class Account {
         }
 
         public AccountBuilder withMovements(){
-            account.setMovementsList(new HashMap<>());
+            account.setMovementsList(new ArrayList<>());
             return this;
         }
 

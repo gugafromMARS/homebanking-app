@@ -32,8 +32,7 @@ public class BankMovements {
         if(haveMoney(account, movementCreateDto)){
             account.setBalance(account.getBalance() - movementCreateDto.getAmount());
             Movement movement = updateMovementsInAcc(account, movementCreateDto);
-            account.getBalance();
-            return movementConverter.toPaymentDto(account, movement);
+            return movementConverter.toPaymentDto( movement);
         }
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Don't have enough funds");
     }
@@ -41,7 +40,7 @@ public class BankMovements {
     public DepositDto deposit(Account account, MovementCreateDto movementCreateDto){
         account.setBalance(account.getBalance() + movementCreateDto.getAmount());
         Movement movement = updateMovementsInAcc(account, movementCreateDto);
-        return movementConverter.depositDto(account, movement);
+        return movementConverter.depositDto( movement);
     }
 
     public TransferDto transfer(Account account, MovementCreateDto movementCreateDto){
@@ -55,16 +54,14 @@ public class BankMovements {
             receiverAccount.setBalance(receiverAccount.getBalance() + movementCreateDto.getAmount());
             movementCreateDto.setType("RECEIPT");
             updateMovementsInAcc(receiverAccount, movementCreateDto);
-            return movementConverter.toTransferDto(account, movement);
+            return movementConverter.toTransferDto( movement);
         }
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Don't have enough funds");
     }
 
     private Movement updateMovementsInAcc(Account account, MovementCreateDto movementCreateDto){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
         Movement movement = movementConverter.fromCreateDto(movementCreateDto);
-        account.getMovementsList().put(dateFormat.format(date), movement);
+        account.getMovementsList().add(movement);
         accountRepository.save(account);
         return movement;
     }

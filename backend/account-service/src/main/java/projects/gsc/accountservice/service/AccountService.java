@@ -82,7 +82,7 @@ public class AccountService {
     }
 
 
-    public Map<String, Movement> getMovementsById(Long id) {
+    public List<Movement> getMovementsById(Long id) {
         Account existingAcc = accountRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found"));
         return existingAcc.getMovementsList();

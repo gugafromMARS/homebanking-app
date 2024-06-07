@@ -35,9 +35,11 @@ export const Card: FunctionComponent<CardProps> = ({
         <SwiperSlide
           key={account.id}
           className="swiper-sliderr tranding-slide card-bg"
-          onChange={() => handleActiveAcc(account)}
         >
-          <div className="card-swiper">
+          <div
+            onMouseOver={() => handleActiveAcc(account)}
+            className="card-swiper"
+          >
             <h1>SafeNet Bank</h1>
             <div className="card-user-info">
               <h2>

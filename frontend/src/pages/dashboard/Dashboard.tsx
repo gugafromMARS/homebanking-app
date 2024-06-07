@@ -2,7 +2,7 @@ import { FunctionComponent, ReactElement, useEffect } from "react";
 import "./Dashboard.css";
 import Footer from "../../components/Footer";
 import { Operations } from "../../components/Operations";
-import { Moviments } from "../../components/Moviments";
+import { Movements } from "../../components/Movements";
 import { useState } from "react";
 import { Deposit } from "../../components/Deposit";
 import { Payment } from "../../components/Payment";
@@ -11,7 +11,7 @@ import { UserInfo } from "../../components/UserInfo";
 import Chart from "../../components/Chart";
 import { Card } from "../../components/Card";
 import { CreateAccount } from "../../components/CreateAccount";
-import { getAccounts } from "../../components/Requests";
+import { getAccounts, getMovements } from "../../components/Requests";
 import { AccInfo } from "../../components/AccInfo";
 
 export type OperationType =
@@ -39,6 +39,15 @@ interface DashboardProps {
   user: UserDto;
 }
 
+export interface MovesDto {
+  amount: number;
+  date: string;
+  entity: number;
+  receiptAccNumber: number | null;
+  ref: number;
+  type: string;
+}
+
 const BTNGradient = () => {
   return (
     <>
@@ -55,16 +64,24 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({
   const [accs, setAccs] = useState<Accounts[]>([]);
   const [error, setError] = useState<Error | null>(null);
   const [accActive, setAccActive] = useState<Accounts | null>(null);
+  const [accMoves, setAccMoves] = useState<MovesDto[]>([]);
 
   useEffect(() => {
     handleAccs();
-  }, [accs]);
+  }, [accs, accActive]);
 
   async function handleAccs() {
     try {
       const accs = await getAccounts(user.ownerEmail);
       setAccs([...accs]);
-      setAccActive(accs[0]);
+      if (accActive == null) {
+        setAccActive(accs[0]);
+        const moves = await getMovements(accs[0].id);
+        setAccMoves([...moves]);
+      } else {
+        const moves = await getMovements(accActive.id);
+        setAccMoves([...moves]);
+      }
     } catch (error: any) {
       setError(new Error(error.message || "Failed to create acc"));
     }
@@ -118,7 +135,7 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({
             </div>
             <section className="movements-dash">
               <h1>Movements</h1>
-              <Moviments />
+              <Movements movements={accMoves} />
             </section>
           </>
         )}
@@ -139,11 +156,14 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({
               </button>
             </div>
             <div className="operations-dash">
-              <Operations handleOperationClick={handleOperationClick} />
+              <Operations
+                handleOperationClick={handleOperationClick}
+                accs={accs}
+              />
             </div>
             <section className="movements-dash">
               <h1>Movements</h1>
-              <Moviments />
+              <Movements movements={accMoves} />
             </section>
           </>
         )}
