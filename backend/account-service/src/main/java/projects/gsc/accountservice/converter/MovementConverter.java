@@ -17,20 +17,20 @@ import java.util.List;
 public class MovementConverter {
 
 
-    public DepositDto depositDto(Account account, Movement movement){
-        List<String> dates = account.getMovementsList().keySet().stream().toList();
+    public DepositDto depositDto( Movement movement){
+
 
         return DepositDto.builder()
-                .date(dates.get(dates.size() - 1))
+                .date(movement.getDate())
                 .type(movement.getType())
                 .amount(movement.getAmount())
                 .build();
     }
 
-    public PaymentDto toPaymentDto(Account account, Movement movement){
-        List<String> dates = account.getMovementsList().keySet().stream().toList();
+    public PaymentDto toPaymentDto( Movement movement){
+
         return PaymentDto.builder()
-                .date(dates.get(dates.size() - 1))
+                .date(movement.getDate())
                 .type(movement.getType())
                 .amount(movement.getAmount())
                 .ref(movement.getRef())
@@ -38,10 +38,10 @@ public class MovementConverter {
                 .build();
     }
 
-    public TransferDto toTransferDto(Account account, Movement movement){
-        List<String> dates = account.getMovementsList().keySet().stream().toList();
+    public TransferDto toTransferDto( Movement movement){
+
         return TransferDto.builder()
-                .date(dates.get(dates.size() - 1))
+                .date(movement.getDate())
                 .type(movement.getType())
                 .amount(movement.getAmount())
                 .receiptAccNumber(movement.getReceiptAccNumber())
