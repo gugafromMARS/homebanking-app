@@ -28,6 +28,7 @@ public class UserConverter {
                 .id(user.getId())
                 .name(user.getName())
                 .email(user.getEmail())
+                .address(user.getAddress())
                 .build();
     }
 }

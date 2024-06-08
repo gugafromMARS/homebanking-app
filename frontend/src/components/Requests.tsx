@@ -75,14 +75,22 @@ export async function getAccounts(email: string) {
 
 export async function getCoords(city: string) {
   const coords: Response = await fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=65fd81137481c2dbe32e31dc3197545f`
+    `http://api.openweathermap.org/geo/1.0/direct?q=Japan&limit=1&appid=5430b32bd4c05a83b0860efd6c7c9de5`
   );
 
+  const coordsData = await coords.json();
+
+  const lat = await coordsData[0].lat;
+  const lon = await coordsData[0].lon;
+
   const response: Response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=65fd81137481c2dbe32e31dc3197545f`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=65fd81137481c2dbe32e31dc3197545f`
   );
 
   const respData = await response.json();
+
+  console.log(respData);
+
   if (!response.ok) {
     throw new Error("Failed to get city");
   }

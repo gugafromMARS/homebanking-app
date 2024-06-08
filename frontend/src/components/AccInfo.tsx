@@ -30,12 +30,12 @@ export const AccInfo: FunctionComponent<AccInfoProps> = ({
       <div className="income">
         <h1>Income</h1>
         {!activeAcc && <p>0€</p>}
-        {activeAcc && <p>{deposits}</p>}
+        {activeAcc && <p>{deposits}€</p>}
       </div>
       <div className="outcome">
         <h1>Expense</h1>
         {!activeAcc && <p>0€</p>}
-        {activeAcc && <p>{expenses}</p>}
+        {activeAcc && <p>{expenses}€</p>}
       </div>
     </div>
   );

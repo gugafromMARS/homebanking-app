@@ -38,6 +38,7 @@ interface Accounts {
 interface UserDto {
   ownerName: string;
   ownerEmail: string;
+  ownerAddress: string;
 }
 
 interface DashboardProps {

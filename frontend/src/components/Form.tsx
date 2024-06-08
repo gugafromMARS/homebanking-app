@@ -91,13 +91,8 @@ export const Form: FunctionComponent<FormProps> = ({
             <Input ref={age} id="age" type="number" />
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="address">Address</Label>
-            <Input
-              ref={address}
-              id="address"
-              placeholder="Av. White Street"
-              type="text"
-            />
+            <Label htmlFor="city">City</Label>
+            <Input ref={address} id="city" placeholder="Lisbon" type="text" />
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="email">Email Address</Label>
