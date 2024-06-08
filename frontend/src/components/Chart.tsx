@@ -18,6 +18,7 @@ interface ChartProps {
 export default class Chart extends PureComponent<ChartProps> {
   render() {
     const { movements } = this.props;
+    const reversedMovements = movements ? [...movements].reverse() : [];
 
     return (
       <div style={{ width: "100%" }}>
@@ -27,7 +28,7 @@ export default class Chart extends PureComponent<ChartProps> {
           <AreaChart
             width={500}
             height={200}
-            data={movements}
+            data={reversedMovements}
             syncId="anyId"
             margin={{
               top: 10,

@@ -72,10 +72,6 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({
     handleAccs();
   }, [accs, accActive]);
 
-  useEffect(() => {
-    calculateTotals();
-  }, []);
-
   async function handleAccs() {
     try {
       const accs = await getAccounts(user.ownerEmail);
@@ -83,22 +79,24 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({
       if (accActive == null) {
         setAccActive(accs[0]);
         const moves = await getMovements(accs[0].id);
-        setAccMoves([...moves]);
+        setAccMoves([...moves].reverse());
+        calculateTotals([...moves]);
       } else {
         const moves = await getMovements(accActive.id);
-        setAccMoves([...moves]);
+        setAccMoves([...moves].reverse());
+        calculateTotals([...moves]);
       }
     } catch (error: any) {
       setError(new Error(error.message || "Failed to create acc"));
     }
   }
 
-  const calculateTotals = (): void => {
-    let deposits: number = totalDeposit;
-    let expenses: number = totalExpenses;
+  const calculateTotals = (moves: MovesDto[]): void => {
+    let deposits: number = 0;
+    let expenses: number = 0;
 
-    if (accMoves.length > 0) {
-      accMoves.map((move) => {
+    if (moves.length > 0) {
+      moves.map((move) => {
         if (move.type === "DEPOSIT") {
           deposits = deposits + move.amount;
         } else {
