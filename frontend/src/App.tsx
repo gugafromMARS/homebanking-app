@@ -17,11 +17,13 @@ interface UserSuccessfullLogin {
   id: number;
   name: string;
   email: string;
+  address: string;
 }
 
 interface UserDto {
   ownerName: string;
   ownerEmail: string;
+  ownerAddress: string;
 }
 
 function App() {
@@ -37,6 +39,7 @@ function App() {
     id: 0,
     name: "",
     email: "string",
+    address: "",
   };
 
   async function handleLogin(user: userLogin) {
@@ -47,6 +50,7 @@ function App() {
         const newUser: UserDto = {
           ownerName: isLoggedIn.name,
           ownerEmail: user.email,
+          ownerAddress: isLoggedIn.address,
         };
         setUserDto(newUser);
       }
