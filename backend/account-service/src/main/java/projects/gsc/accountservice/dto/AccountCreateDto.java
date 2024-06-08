@@ -17,4 +17,5 @@ public class AccountCreateDto {
     private int age;
     private String address;
     private String accType;
+
 }

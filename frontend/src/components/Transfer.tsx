@@ -1,28 +1,41 @@
-import { FunctionComponent, ReactElement } from "react";
+import { FunctionComponent, ReactElement, useRef } from "react";
 import { Label } from "./label";
 import { Input } from "./input";
 import { cn } from "../utils/cn";
 import { useState } from "react";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
+import { MoveCreateDto } from "../pages/dashboard/Dashboard";
 
 interface TransferProps {
   operationClose: () => void;
+  handleExecution: (newTransfer: MoveCreateDto) => void;
 }
 
-export const Transfer: FunctionComponent<TransferProps> = (
-  operationClose
-): ReactElement => {
+export const Transfer: FunctionComponent<TransferProps> = ({
+  operationClose,
+  handleExecution,
+}): ReactElement => {
   const [open, setOpen] = useState(true);
+
+  const accNumber = useRef();
+  const amount = useRef();
+  const receiptAccNumber = useRef();
 
   const onCloseModal = () => {
     setOpen(false);
-    operationClose;
+    operationClose();
   };
 
-  const handleDeposit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Payment");
+  const handleTransfer = () => {
+    const newTransfer = {
+      accNumber: accNumber.current.value,
+      type: "Transfer",
+      amount: amount.current.value,
+      receiptAccNumber: receiptAccNumber.current.value,
+    };
+    handleExecution(newTransfer);
+    onCloseModal();
   };
 
   return (
@@ -36,12 +49,13 @@ export const Transfer: FunctionComponent<TransferProps> = (
             Enter receiver account and the amount for transfer.
           </p>
 
-          <form className="my-8" onSubmit={handleDeposit}>
+          <form className="my-8" onSubmit={handleTransfer}>
             <LabelInputContainer className="mb-4">
-              <Label htmlFor="ibanNumber">IBAN Number</Label>
+              <Label htmlFor="ibanNumber">Account Number</Label>
               <Input
+                ref={accNumber}
                 id="iban"
-                placeholder="PT50 xxxx xxxx xxxx xxxx xxxx x"
+                placeholder="xxxxx"
                 type="text"
               />
             </LabelInputContainer>
@@ -50,8 +64,17 @@ export const Transfer: FunctionComponent<TransferProps> = (
               <Input id="receiver" placeholder="John White" type="text" />
             </LabelInputContainer>
             <LabelInputContainer className="mb-4">
+              <Label htmlFor="amount">Receiver Account Number</Label>
+              <Input
+                ref={receiptAccNumber}
+                id="receiverAccNumber"
+                placeholder="xxxx"
+                type="text"
+              />
+            </LabelInputContainer>
+            <LabelInputContainer className="mb-4">
               <Label htmlFor="amount">Amount</Label>
-              <Input id="amount" placeholder="10€" type="text" />
+              <Input ref={amount} id="amount" placeholder="10€" type="text" />
             </LabelInputContainer>
             <button
               className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
