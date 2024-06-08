@@ -20,7 +20,11 @@ export const Movements: FunctionComponent<MovementsProps> = ({
               type={type}
               amount={amount}
               date={date}
-              color={type == "DEPOSIT" ? "text-green-500" : "text-red-500"}
+              color={
+                type == "DEPOSIT" || type == "RECEIPT"
+                  ? "text-green-500"
+                  : "text-red-500"
+              }
             />
           );
         })

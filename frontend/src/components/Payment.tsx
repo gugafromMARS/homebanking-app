@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement } from "react";
+import { FunctionComponent, ReactElement, useRef } from "react";
 import { Label } from "./label";
 import { Input } from "./input";
 import { cn } from "../utils/cn";
@@ -7,24 +7,39 @@ import { useState } from "react";
 
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
+import { MoveCreateDto } from "../pages/dashboard/Dashboard";
 
 interface PaymentProps {
   operationClose: () => void;
+  handleExecution: (newPayment: MoveCreateDto) => void;
 }
 
-export const Payment: FunctionComponent<PaymentProps> = (
-  operationClose
-): ReactElement => {
+export const Payment: FunctionComponent<PaymentProps> = ({
+  operationClose,
+  handleExecution,
+}): ReactElement => {
   const [open, setOpen] = useState(true);
+
+  const accNumber = useRef();
+  const entity = useRef();
+  const reference = useRef();
+  const amount = useRef();
 
   const onCloseModal = () => {
     setOpen(false);
-    operationClose;
+    operationClose();
   };
 
-  const handleDeposit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Payment");
+  const handlePayment = () => {
+    const newPayment = {
+      accNumber: accNumber.current.value,
+      type: "Payment",
+      entity: entity.current.value,
+      reference: reference.current.value,
+      amount: amount.current.value,
+    };
+    handleExecution(newPayment);
+    onCloseModal();
   };
 
   return (
@@ -38,18 +53,32 @@ export const Payment: FunctionComponent<PaymentProps> = (
             Enter entity and reference for the payment.
           </p>
 
-          <form className="my-8" onSubmit={handleDeposit}>
+          <form className="my-8" onSubmit={handlePayment}>
+            <LabelInputContainer className="mb-4">
+              <Label htmlFor="reference">Account Number</Label>
+              <Input
+                ref={accNumber}
+                id="reference"
+                placeholder="xxxxxx"
+                type="text"
+              />
+            </LabelInputContainer>
             <LabelInputContainer className="mb-4">
               <Label htmlFor="entity">Entity</Label>
-              <Input id="entity" placeholder="xxxxx" type="text" />
+              <Input ref={entity} id="entity" placeholder="xxxxx" type="text" />
             </LabelInputContainer>
             <LabelInputContainer className="mb-4">
               <Label htmlFor="reference">Reference</Label>
-              <Input id="reference" placeholder="xxx xxx xxx" type="text" />
+              <Input
+                ref={reference}
+                id="reference"
+                placeholder="xxx xxx xxx"
+                type="text"
+              />
             </LabelInputContainer>
             <LabelInputContainer className="mb-4">
               <Label htmlFor="amount">Amount</Label>
-              <Input id="amount" placeholder="10€" type="text" />
+              <Input ref={amount} id="amount" placeholder="10€" type="text" />
             </LabelInputContainer>
             <button
               className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"

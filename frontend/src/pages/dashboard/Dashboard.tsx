@@ -11,11 +11,16 @@ import { UserInfo } from "../../components/UserInfo";
 import Chart from "../../components/Chart";
 import { Card } from "../../components/Card";
 import { CreateAccount } from "../../components/CreateAccount";
-import { getAccounts, getMovements } from "../../components/Requests";
+import {
+  deposit,
+  getAccounts,
+  getMovements,
+  payment,
+  transfer,
+} from "../../components/Requests";
 import { AccInfo } from "../../components/AccInfo";
 
 export type OperationType =
-  | "Movements"
   | "Deposit"
   | "Payment"
   | "Transfer"
@@ -46,6 +51,15 @@ export interface MovesDto {
   receiptAccNumber: number | null;
   ref: number;
   type: string;
+}
+
+export interface MoveCreateDto {
+  accNumber: number;
+  type: string;
+  amount: number;
+  entity: number | null;
+  receiptAccNumber: number | null;
+  ref: number | null;
 }
 
 const BTNGradient = () => {
@@ -107,6 +121,22 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({
     setTotalExpenses(expenses);
     setTotalDeposit(deposits);
   };
+
+  async function handleOperationExecute(newDeposit: MoveCreateDto) {
+    try {
+      if (activeOperation === "Deposit") {
+        await deposit(newDeposit);
+      }
+      if (activeOperation === "Payment") {
+        await payment(newDeposit);
+      }
+      if (activeOperation === "Transfer") {
+        await transfer(newDeposit);
+      }
+    } catch (error: any) {
+      setError(new Error(error.message || "Failed to make the "));
+    }
+  }
 
   const handleOperationClick = (operation: OperationType): void => {
     setActiveOperation(operation);
@@ -201,13 +231,22 @@ export const Dashboard: FunctionComponent<DashboardProps> = ({
           />
         )}
         {activeOperation === "Deposit" && (
-          <Deposit operationClose={handleOperationClose} />
+          <Deposit
+            operationClose={handleOperationClose}
+            handleExecution={handleOperationExecute}
+          />
         )}
         {activeOperation === "Payment" && (
-          <Payment operationClose={handleOperationClose} />
+          <Payment
+            operationClose={handleOperationClose}
+            handleExecution={handleOperationExecute}
+          />
         )}
         {activeOperation === "Transfer" && (
-          <Transfer operationClose={handleOperationClose} />
+          <Transfer
+            operationClose={handleOperationClose}
+            handleExecution={handleOperationExecute}
+          />
         )}
       </section>
       <div className={`${!activeOperation ? "dashboard-footer" : "foot"}`}>

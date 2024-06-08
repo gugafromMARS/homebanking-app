@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement } from "react";
+import { FunctionComponent, ReactElement, useRef } from "react";
 import { Label } from "./label";
 import { Input } from "./input";
 import { cn } from "../utils/cn";
@@ -6,24 +6,36 @@ import "./Deposit.css";
 import { useState } from "react";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
+import { MoveCreateDto } from "../pages/dashboard/Dashboard";
 
 interface DepositProps {
   operationClose: () => void;
+  handleExecution: (newDeposit: MoveCreateDto) => void;
 }
 
-export const Deposit: FunctionComponent<DepositProps> = (
-  operationClose
-): ReactElement => {
+export const Deposit: FunctionComponent<DepositProps> = ({
+  operationClose,
+  handleExecution,
+}): ReactElement => {
   const [open, setOpen] = useState(true);
+
+  const accNumber = useRef();
+
+  const amount = useRef();
 
   const onCloseModal = () => {
     setOpen(false);
-    operationClose;
+    operationClose();
   };
 
-  const handleDeposit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Deposited");
+  const handleDeposit = () => {
+    const newDeposit = {
+      accNumber: accNumber.current.value,
+      type: "Deposit",
+      amount: amount.current.value,
+    };
+    handleExecution(newDeposit);
+    onCloseModal();
   };
 
   return (
@@ -40,11 +52,12 @@ export const Deposit: FunctionComponent<DepositProps> = (
           <form className="my-8" onSubmit={handleDeposit}>
             <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
               <LabelInputContainer className="mb-4">
-                <Label htmlFor="ibanNumber">IBAN Number</Label>
+                <Label htmlFor="ibanNumber">Account Number</Label>
                 <Input
                   id="iban"
-                  placeholder="PT50 xxxx xxxx xxxx xxxx xxxx x"
+                  placeholder="xxxxxx"
                   type="text"
+                  ref={accNumber}
                 />
               </LabelInputContainer>
             </div>
@@ -54,7 +67,7 @@ export const Deposit: FunctionComponent<DepositProps> = (
             </LabelInputContainer>
             <LabelInputContainer className="mb-4">
               <Label htmlFor="amount">Amount</Label>
-              <Input id="amount" placeholder="10€" type="text" />
+              <Input ref={amount} id="amount" placeholder="10€" type="text" />
             </LabelInputContainer>
             <button
               className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"

@@ -1,3 +1,5 @@
+import { MoveCreateDto } from "../pages/dashboard/Dashboard";
+
 interface User {
   name: string;
   age: number;
@@ -115,6 +117,67 @@ export async function getMovements(accNumber: number) {
 
   if (!response.ok) {
     throw new Error("Failed to get account movements");
+  }
+
+  return respData;
+}
+
+export async function deposit(move: MoveCreateDto) {
+  const response: Response = await fetch(
+    "http://localhost:8081/api/account/movements/deposit",
+    {
+      method: "POST",
+      body: JSON.stringify(move),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  const respData = response.json();
+
+  if (!response.ok) {
+    throw new Error("Failed to deposit in your account");
+  }
+
+  return respData;
+}
+export async function payment(move: MoveCreateDto) {
+  const response: Response = await fetch(
+    "http://localhost:8081/api/account/movements/payment",
+    {
+      method: "POST",
+      body: JSON.stringify(move),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  const respData = response.json();
+
+  if (!response.ok) {
+    throw new Error("Failed to deposit in your account");
+  }
+
+  return respData;
+}
+export async function transfer(move: MoveCreateDto) {
+  const response: Response = await fetch(
+    "http://localhost:8081/api/account/movements/transfer",
+    {
+      method: "POST",
+      body: JSON.stringify(move),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  const respData = response.json();
+
+  if (!response.ok) {
+    throw new Error("Failed to deposit in your account");
   }
 
   return respData;
