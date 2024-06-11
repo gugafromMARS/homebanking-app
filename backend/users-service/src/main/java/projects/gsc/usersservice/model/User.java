@@ -24,6 +24,9 @@ public class User {
     private String email;
     private String pwd;
 
+    @Lob
+    private byte[] photo;
+
     public  UserBuilder builder(){
         return new UserBuilder();
     }
@@ -56,6 +59,11 @@ public class User {
         // mudar wuando tivermos a parte do enconder
         public UserBuilder withPwd(String pwd){
             user.setPwd(pwd);
+            return this;
+        }
+
+        public UserBuilder withPhoto() {
+            user.setPhoto(null);
             return this;
         }
 

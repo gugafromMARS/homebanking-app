@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import projects.gsc.usersservice.dto.UserCreateDto;
 import projects.gsc.usersservice.dto.UserLogin;
+import projects.gsc.usersservice.dto.UserPictureUpdate;
 import projects.gsc.usersservice.service.UserService;
 
 @RestController
@@ -31,6 +32,11 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserLogin userLogin){
         return ResponseEntity.ok(userService.loginUser(userLogin));
+    }
+
+    @PostMapping("/picture")
+    public ResponseEntity<?> updatePicture(@RequestBody UserPictureUpdate userPictureUpdate){
+        return  ResponseEntity.ok(userService.updatePic(userPictureUpdate));
     }
 
 }

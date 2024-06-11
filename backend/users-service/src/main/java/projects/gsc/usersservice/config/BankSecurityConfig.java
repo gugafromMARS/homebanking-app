@@ -37,7 +37,7 @@ public class BankSecurityConfig {
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/api/user/register","/api/user", "/api/user/login").permitAll());
+                        .requestMatchers("/api/user/register","/api/user", "/api/user/login", "/api/user/picture").permitAll());
         http.formLogin(Customizer.withDefaults());
         http.httpBasic(Customizer.withDefaults());
         return http.build();

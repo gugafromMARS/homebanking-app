@@ -10,6 +10,7 @@ import projects.gsc.usersservice.converter.UserConverter;
 import projects.gsc.usersservice.dto.UserCreateDto;
 import projects.gsc.usersservice.dto.UserDto;
 import projects.gsc.usersservice.dto.UserLogin;
+import projects.gsc.usersservice.dto.UserPictureUpdate;
 import projects.gsc.usersservice.model.User;
 import projects.gsc.usersservice.repository.UserRepository;
 
@@ -46,5 +47,15 @@ public class UserService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
         return authenticationImp.login(existingUser, userLogin) ? userConverter.toDto(existingUser) : null;
+    }
+
+    public UserDto updatePic(UserPictureUpdate userPictureUpdate) {
+        User existingUser = userRepository.findByEmail(userPictureUpdate.getOwnerEmail());
+        if(existingUser == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
+        existingUser.setPhoto(userPictureUpdate.getPhoto());
+        userRepository.save(existingUser);
+        return userConverter.toDto(existingUser);
     }
 }
