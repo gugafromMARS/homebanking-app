@@ -27,11 +27,11 @@ export default function ImageSlider() {
       modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
       className="mySwiper"
     >
-      {DATA.map(({ id, src, phrase }) => (
+      {DATA.map(({ id, src, title, phrase }) => (
         <SwiperSlide key={id} className="slider-content">
           <div className="slider-tittle">
-            <h1>{phrase}</h1>
-            <button className="tittle-btn">Ok</button>
+            <h1>{title}</h1>
+            <p className="slider-phrase">{phrase}</p>
           </div>
           <div className="slider-img">
             <img src={src} alt="image" />
