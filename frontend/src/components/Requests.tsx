@@ -21,6 +21,11 @@ interface AccountCreateDto {
   accType: string;
 }
 
+export interface UserUpdatePhoto {
+  ownerEmail: string;
+  photo: FormData | null;
+}
+
 export async function createUser(user: User): Promise<void> {
   const response: Response = await fetch(
     "http://localhost:8080/api/user/register",
@@ -41,6 +46,24 @@ export async function createUser(user: User): Promise<void> {
   return respData.message;
 }
 
+export async function updateUserPhoto(user: UserUpdatePhoto) {
+  const response: Response = await fetch(
+    "http://localhost:8080/api/user/picture",
+    {
+      method: "POST",
+      body: JSON.stringify(user),
+    }
+  );
+
+  const respData = await response.json();
+  console.log(respData);
+
+  if (!response.ok) {
+    throw new Error("Failed to update a user photo");
+  }
+  return respData.message;
+}
+
 export async function loginUser(user: userLogin) {
   const response: Response = await fetch(
     "http://localhost:8080/api/user/login",
@@ -54,6 +77,8 @@ export async function loginUser(user: userLogin) {
   );
 
   const respData = await response.json();
+
+  console.log(respData);
 
   if (!response.ok) {
     throw new Error("Failed to login");
@@ -75,7 +100,7 @@ export async function getAccounts(email: string) {
 
 export async function getCoords(city: string) {
   const coords: Response = await fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=Japan&limit=1&appid=5430b32bd4c05a83b0860efd6c7c9de5`
+    `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=5430b32bd4c05a83b0860efd6c7c9de5`
   );
 
   const coordsData = await coords.json();
@@ -88,8 +113,6 @@ export async function getCoords(city: string) {
   );
 
   const respData = await response.json();
-
-  console.log(respData);
 
   if (!response.ok) {
     throw new Error("Failed to get city");

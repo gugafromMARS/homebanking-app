@@ -20,6 +20,7 @@ public class UserConverter {
                 .withAddress(userCreateDto.getAddress())
                 .withEmail(userCreateDto.getEmail())
                 .withPwd(passwordEncoder.encode(userCreateDto.getPwd()))
+                .withPhoto()
                 .build();
     }
 
@@ -29,6 +30,7 @@ public class UserConverter {
                 .name(user.getName())
                 .email(user.getEmail())
                 .address(user.getAddress())
+                .photo(user.getPhoto())
                 .build();
     }
 }
