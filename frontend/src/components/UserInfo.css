@@ -72,3 +72,10 @@ span.date {
   flex-direction: column;
   padding: 15px;
 }
+
+#img-input {
+  border-style: solid;
+  border-width: 1px;
+  background-color: lightgray;
+  border-radius: 1px solid black;
+}

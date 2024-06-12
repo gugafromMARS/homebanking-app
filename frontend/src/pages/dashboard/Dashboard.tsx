@@ -19,6 +19,7 @@ import {
   transfer,
 } from "../../components/Requests";
 import { AccInfo } from "../../components/AccInfo";
+import { UserDto } from "../../App";
 
 export type OperationType =
   | "Deposit"
@@ -33,12 +34,6 @@ interface Accounts {
   ownerEmail: string;
   balance: number;
   accType: string;
-}
-
-interface UserDto {
-  ownerName: string;
-  ownerEmail: string;
-  ownerAddress: string;
 }
 
 interface DashboardProps {
