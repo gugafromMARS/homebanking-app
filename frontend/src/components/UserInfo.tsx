@@ -78,7 +78,7 @@ export const UserInfo: FunctionComponent<OperationProps> = ({
       <div className="user-info">
         <div className="user-image">
           {!user.photo && <img src={image} alt="" />}
-          {user.photo && <img src={user.photo} alt="" />}
+          {user.photo && <img className="img-user" src={user.photo} alt="" />}
           <input
             id="img-input"
             className="text-sm  w-52 text-black rounded-md h-15 font-medium mt-5 ml-5"

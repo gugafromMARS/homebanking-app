@@ -8,6 +8,10 @@
   width: 40%;
 }
 
+.img-user {
+  border-radius: 50%;
+}
+
 .location {
   display: grid;
   grid-template-columns: 1fr 1fr;
