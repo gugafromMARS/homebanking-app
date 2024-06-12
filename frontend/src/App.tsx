@@ -18,12 +18,14 @@ interface UserSuccessfullLogin {
   name: string;
   email: string;
   address: string;
+  photo: string | null;
 }
 
-interface UserDto {
+export interface UserDto {
   ownerName: string;
   ownerEmail: string;
   ownerAddress: string;
+  photo: string | null;
 }
 
 function App() {
@@ -51,6 +53,7 @@ function App() {
           ownerName: isLoggedIn.name,
           ownerEmail: user.email,
           ownerAddress: isLoggedIn.address,
+          photo: isLoggedIn.photo,
         };
         setUserDto(newUser);
       }

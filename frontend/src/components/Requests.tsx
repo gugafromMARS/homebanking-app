@@ -23,7 +23,7 @@ interface AccountCreateDto {
 
 export interface UserUpdatePhoto {
   ownerEmail: string;
-  photo: FormData | null;
+  photo: string | null;
 }
 
 export async function createUser(user: User): Promise<void> {
@@ -52,6 +52,9 @@ export async function updateUserPhoto(user: UserUpdatePhoto) {
     {
       method: "POST",
       body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+      },
     }
   );
 

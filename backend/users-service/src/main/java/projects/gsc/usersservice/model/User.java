@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.awt.image.BufferedImage;
+
 @Entity
 @Table(name = "users")
 @Getter
@@ -24,8 +26,7 @@ public class User {
     private String email;
     private String pwd;
 
-    @Lob
-    private byte[] photo;
+    private String photo;
 
     public  UserBuilder builder(){
         return new UserBuilder();

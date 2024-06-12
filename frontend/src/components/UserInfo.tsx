@@ -10,11 +10,7 @@ import "./UserInfo.css";
 import image from "../assets/user.png";
 import { OperationType } from "../pages/dashboard/Dashboard";
 import { getCoords, updateUserPhoto, UserUpdatePhoto } from "./Requests";
-
-interface UserDto {
-  ownerName: string;
-  ownerEmail: string;
-}
+import { UserDto } from "../App";
 
 export interface UserLocation {
   temp: number;
@@ -33,6 +29,7 @@ export const UserInfo: FunctionComponent<OperationProps> = ({
 }): ReactElement => {
   const [error, setError] = useState<Error | null>(null);
   const [location, setLocation] = useState<UserLocation | null>(null);
+  const [url, setUrl] = useState<string | null>(null);
 
   const date = new Date();
   const day = date.getDate();
@@ -60,20 +57,16 @@ export const UserInfo: FunctionComponent<OperationProps> = ({
     }
   }
 
-  async function handlePhotoUpdate(event: ChangeEvent<HTMLInputElement>): void {
-    const file = event.target.files && event.target.files[0];
-    if (file) {
-      const formData = new FormData();
-      formData.append("image", file);
-      console.log(formData);
-
+  async function handlePhotoUpdate(): void {
+    if (url) {
       const newImage: UserUpdatePhoto = {
         ownerEmail: user.ownerEmail,
-        photo: formData,
+        photo: url,
       };
+      console.log(newImage);
+
       try {
-        const userUpdated = await updateUserPhoto(newImage); // Corrigindo a chamada de função
-        console.log(userUpdated); // Apenas para depuração, faça o que for necessário com a resposta
+        const userUpdated = await updateUserPhoto(newImage);
       } catch (error: any) {
         setError(new Error(error.message || "Failed to update user image"));
       }
@@ -84,13 +77,22 @@ export const UserInfo: FunctionComponent<OperationProps> = ({
     <div onClick={() => handleOperationClick(null)} className={`user `}>
       <div className="user-info">
         <div className="user-image">
-          <img src={image} alt="" />
-
+          {!user.photo && <img src={image} alt="" />}
+          {user.photo && <img src={user.photo} alt="" />}
           <input
-            onChange={handlePhotoUpdate}
-            className="bg-gradient-to-br relative  from-black dark:from-zinc-900 dark:to-zinc-900 text-sm to-neutral-600 block dark:bg-zinc-800 w-52 text-white rounded-md h-15 font-medium ml-5 shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
-            type="file"
+            id="img-input"
+            className="text-sm  w-52 text-black rounded-md h-15 font-medium mt-5 ml-5"
+            type="text"
+            value={url}
+            placeholder="Photo Url"
+            onChange={(e) => setUrl(e.target.value)}
           />
+          <button
+            className="bg-gradient-to-br relative  from-black dark:from-zinc-900 dark:to-zinc-900 text-sm to-neutral-600 block dark:bg-zinc-800 w-52 text-white rounded-md h-15 font-medium ml-5 shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+            onClick={handlePhotoUpdate}
+          >
+            Update Photo
+          </button>
           <BottomGradient />
         </div>
         <div className="location">

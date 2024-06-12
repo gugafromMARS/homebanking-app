@@ -4,6 +4,7 @@ package projects.gsc.usersservice.service;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.server.ResponseStatusException;
 import projects.gsc.usersservice.converter.AuthenticationImp;
 import projects.gsc.usersservice.converter.UserConverter;
@@ -13,6 +14,12 @@ import projects.gsc.usersservice.dto.UserLogin;
 import projects.gsc.usersservice.dto.UserPictureUpdate;
 import projects.gsc.usersservice.model.User;
 import projects.gsc.usersservice.repository.UserRepository;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.Base64;
 
 @Service
 @AllArgsConstructor
@@ -51,7 +58,7 @@ public class UserService {
 
     public UserDto updatePic(UserPictureUpdate userPictureUpdate) {
         User existingUser = userRepository.findByEmail(userPictureUpdate.getOwnerEmail());
-        if(existingUser == null){
+        if (existingUser == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
         existingUser.setPhoto(userPictureUpdate.getPhoto());
