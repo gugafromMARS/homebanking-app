@@ -24,7 +24,7 @@ export const DATA: {
     id: 2,
     src: img2,
     title: "Save money for a happy future.",
-    phrase: "Open your account till Jun 30th and get shopping descounts.",
+    phrase: "Open your account till June 30th and get shopping descounts.",
   },
   {
     id: 3,
