@@ -79,10 +79,8 @@ Summary of api possibilities in all microservices.
 ### Users Service Endpoints
 
 * **Register User**
-![createUser](https://github.com/gugafromMARS/homebanking-app/assets/116969206/ca77c325-e84f-49da-8ecc-83e8aba63076)
 
 * **Login **
-![Login](https://github.com/gugafromMARS/homebanking-app/assets/116969206/3229472d-c12c-43c0-8ffd-cdc73feaa5b5)
 
 * **Update User Image **
 
@@ -98,14 +96,14 @@ Summary of api possibilities in all microservices.
 ### Movements Endpoints
 
 * **Deposit**
-![Deposit](https://github.com/gugafromMARS/homebanking-app/assets/116969206/d50688e0-3c1e-4c40-b24d-55d7b7c7ef06)
+![Deposit](https://github.com/gugafromMARS/homebanking-app/assets/116969206/b4aef806-e89a-4375-95a9-147e4635c2a0)
 
 * **Payment**
-![Payment](https://github.com/gugafromMARS/homebanking-app/assets/116969206/a2182891-75b0-4db7-abd1-786c79966f09)
+![Payment](https://github.com/gugafromMARS/homebanking-app/assets/116969206/2e1b73c6-c0f5-4f87-be41-1c4b54213895)
 
 * **Transfer**
+![Transfer](https://github.com/gugafromMARS/homebanking-app/assets/116969206/74842f59-61eb-4fd9-b4be-d61f788bfad1)
 
-![Transfer](https://github.com/gugafromMARS/homebanking-app/assets/116969206/a886fdc5-9a1c-4553-8e85-5b18e4916853)
 
 
 
