@@ -57,7 +57,7 @@ npm run dev
 
 ### Home
 
-![HomeSlider](https://github.com/gugafromMARS/homebanking-app/assets/116969206/3a465aee-151d-4021-bee8-b2679deb102a)
+![HomeSlider](https://github.com/gugafromMARS/homebanking-app/assets/116969206/d27c9b05-6c95-4e56-ad4e-9c8342cd386e)
 
 ![Services](https://github.com/gugafromMARS/homebanking-app/assets/116969206/47d23afc-8afc-4a49-905c-de4b70fdc3f7)
 
