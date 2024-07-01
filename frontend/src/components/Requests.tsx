@@ -103,7 +103,7 @@ export async function getAccounts(email: string) {
 
 export async function getCoords(city: string) {
   const coords: Response = await fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=5430b32bd4c05a83b0860efd6c7c9de5`
+    `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid={YOUR_API_KEY_:D}`
   );
 
   const coordsData = await coords.json();
@@ -112,7 +112,7 @@ export async function getCoords(city: string) {
   const lon = await coordsData[0].lon;
 
   const response: Response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=65fd81137481c2dbe32e31dc3197545f`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid={YOUR_API_KEY_:D}`
   );
 
   const respData = await response.json();
